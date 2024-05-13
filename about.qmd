@@ -2,9 +2,7 @@
 
 ::: {.lead}
 
-**Bridge2Food Research**
-
-addresses global food and agriculture challenges by bridging knowledge gaps between industry, academia, and policy to:
+**Bridge2Food Research** addresses global food and agriculture challenges by bridging knowledge gaps between industry, academia, and policy to:
 
 -   Facilitate evidence-based decisions and policy-making processes
 -   Accelerate the development and implementation of high-impact technologies

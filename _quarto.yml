@@ -3,12 +3,13 @@ project:
 
 website:
   navbar:
-#    right:
-#      - href: about.qmd
-#        text: About
-#      - href: healthferm/index.qmd
-#        text: HealthFerm
+    right:
+      - href: about.qmd
+        text: About
+      # - href: healthferm/index.qmd
+      #   text: HealthFerm
     logo: b2flogo.png
+    logo-href: https://www.bridge2food.com
   search: false
 
 

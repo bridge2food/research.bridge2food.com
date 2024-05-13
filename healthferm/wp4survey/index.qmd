@@ -6,9 +6,9 @@ scrolling: true
 navbar:
   collapse: true
   pinned: true
-nav-buttons:
-  - icon: linkedin
-    href: https://www.linkedin.com/company/healthferm/
+  right:
+    - icon: linkedin
+      href: https://www.linkedin.com/company/healthferm/
 include-in-header:
   text: |
     <link rel="shortcut icon" href="logo.svg" />
