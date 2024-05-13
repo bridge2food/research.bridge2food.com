@@ -1,0 +1,22 @@
+project:
+  type: website
+
+website:
+  navbar:
+#    right:
+#      - href: about.qmd
+#        text: About
+#      - href: healthferm/index.qmd
+#        text: HealthFerm
+    logo: b2flogo.png
+  search: false
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

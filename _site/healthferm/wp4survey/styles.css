@@ -1,0 +1,9 @@
+/* css styles */
+
+.quarto-dashboard .card-header {
+  background: none !important;
+}
+
+.quarto-dashboard #quarto-content.quarto-dashboard-content {
+  padding: 0 !important;
+}
