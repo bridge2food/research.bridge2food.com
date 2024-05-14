@@ -8,6 +8,6 @@
   padding: 0 !important;
 }
 
-.quarto-dashboard-header .nav-link {
+#quarto-dashboard-header .nav-link-text {
   font-size: 1rem !important;
 }
