@@ -3,9 +3,9 @@ project:
 
 website:
   navbar:
-    right:
-      - href: about.qmd
-        text: About
+#    right:
+      # - href: about.qmd
+      #   text: About
       # - href: healthferm/index.qmd
       #   text: HealthFerm
     logo: b2flogo.png
