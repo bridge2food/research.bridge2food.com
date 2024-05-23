@@ -543,7 +543,7 @@ I would be willing to try a Plant-Based Fermented ______ made from
 
 ```{r}
 #| title: Trust
-tru_plot
+tru_plot_dd
 ```
 
 ::: {.card title="Prompt"}
@@ -558,10 +558,10 @@ Please evaluate the following statements about your trust towards Plant-Based Fe
 
 ```{r}
 #| title: Barriers
-barriers_plot
+barriers_plot_dd
 ```
 
-::: {.card title="Barriers towards Plant-Based Foods"}
+::: {.card title="Prompt"}
 
 Please evaluate the following statements about your barriers towards **Plant-Based Foods** consumption on a scale from "Strongly disagree" to "Strongly agree"
 
@@ -573,11 +573,11 @@ Please evaluate the following statements about your barriers towards **Plant-Bas
 
 ```{r}
 #| title: Intentions
-q36_plot
+q36_plot_dd
 ```
 ```{r}
 #| title: Likelihood to Try
-q38_plot
+q38_plot_dd
 ```
 
 ::: {.card title="Prompt"}
@@ -613,7 +613,7 @@ In which price condition (comparing to animal-sourced foods) would you buy the f
 
 ```{r}
 #| title: Social, Environmental and Economic Sustainability
-q41_plot
+q41_plot_dd
 ```
 
 ::: {.card title="Prompt"}

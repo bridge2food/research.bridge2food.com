@@ -1000,6 +1000,7 @@ save_image(att2_plot_print, "images/attitudes/att2_plot.png", scale = 8, width =
 
 
 #### By Country (Dropdown menu)
+
 att2_data_dd <- pbff %>%
   select(starts_with("ATT2_"))
 
@@ -1405,6 +1406,130 @@ tru_plot_print <- tru_plot %>%
          legend = list(orientation = 'h', x = -0.2, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(tru_plot_print, "images/attitudes/tru_plot.png", scale = 8, width = 1200, height = 800)
 
+
+#### By Country (Dropdown menu)
+
+tru_data_dd <- pbff %>%
+  select(starts_with("TRU_"))
+
+for (col_name in names(tru_data_dd)) {
+  label <- attr(tru_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(tru_data_dd)[names(tru_data_dd) == col_name] <- label
+  }
+}
+
+tru_data_dd_long <- tru_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+tru_data_dd_long$value_desc <- as_factor(tru_data_dd_long$value)
+tru_data_dd_long$variable <- tru_data_dd_long$variable %>%
+  str_replace_all("\u00A0", "") %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("  ", " ") %>%
+  str_replace_all("Please.*", "") %>%
+  str_replace_all("I would.*", "") %>%
+  trimws() %>%
+  str_wrap(width = 42)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2', '6', '7') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# List of countries including "All"
+countries <- c("All", levels(tru_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  if (country == "All") {
+    country_data <- tru_data_dd_long
+  } else {
+    country_data <- tru_data_dd_long %>% filter(Country == country)
+  }
+  country_data_agg <- aggregate_data(country_data)
+  
+  value_levels <- levels(tru_data_dd_long$value_desc)
+  
+  for (value_desc in value_levels) {
+    value_data <- country_data_agg %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, value_levels) - 1) %% length(colors_7) + 1
+    color <- colors_7[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(tru_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+tru_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  tru_plot_dd <- add_trace(tru_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                           marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                           insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                           hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                           visible = trace$visible)
+}
+
+tru_plot_dd <- tru_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5,
+      xanchor = 'center',
+      y = 1.2,
+      yanchor = 'top'
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+
+
 ### Barriers
 
 barriers_data <- pbff %>%
@@ -1460,6 +1585,129 @@ barriers_plot_print <- barriers_plot %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.375, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(barriers_plot_print, "images/attitudes/barriers_plot.png", scale = 8, width = 1200, height = 1000)
+
+
+#### By Country (Dropdown menu)
+
+barriers_data_dd <- pbff %>%
+  select(starts_with("barriers_"))
+
+for (col_name in names(barriers_data_dd)) {
+  label <- attr(barriers_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(barriers_data_dd)[names(barriers_data_dd) == col_name] <- label
+  }
+}
+
+barriers_data_dd_long <- barriers_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+barriers_data_dd_long$value_desc <- as_factor(barriers_data_dd_long$value)
+barriers_data_dd_long$variable <- barriers_data_dd_long$variable %>%
+  str_replace_all("\u00A0", "") %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("Please.*", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("  ", " ") %>%
+  trimws() %>%
+  str_wrap(width = 60)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2', '6', '7') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# List of countries including "All"
+countries <- c("All", levels(barriers_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  if (country == "All") {
+    country_data <- barriers_data_dd_long
+  } else {
+    country_data <- barriers_data_dd_long %>% filter(Country == country)
+  }
+  country_data_agg <- aggregate_data(country_data)
+  
+  value_levels <- levels(barriers_data_dd_long$value_desc)
+  
+  for (value_desc in value_levels) {
+    value_data <- country_data_agg %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, value_levels) - 1) %% length(colors_7) + 1
+    color <- colors_7[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(barriers_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+barriers_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  barriers_plot_dd <- add_trace(barriers_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                                marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                                insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                                hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                                visible = trace$visible)
+}
+
+barriers_plot_dd <- barriers_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 1.25,
+      xanchor = 'right',
+      y = 0.5,
+      yanchor = 'middle'
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+
 
 
 ### Intentions
@@ -1519,6 +1767,129 @@ q36_plot_print <- q36_plot %>%
          legend = list(orientation = 'h', x = -0.25, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(q36_plot_print, "images/attitudes/q36_plot.png", scale = 8, width = 1200, height = 800)
 
+#### By Country (Dropdown menu)
+
+q36_data_dd <- pbff %>%
+  select(starts_with("q36_"))
+
+for (col_name in names(q36_data_dd)) {
+  label <- attr(q36_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(q36_data_dd)[names(q36_data_dd) == col_name] <- label
+  }
+}
+
+q36_data_dd_long <- q36_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+q36_data_dd_long$value_desc <- as_factor(q36_data_dd_long$value)
+q36_data_dd_long$variable <- q36_data_dd_long$variable %>%
+  str_replace_all("\u00A0", "") %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("  ", " ") %>%
+  str_replace_all("Please.*", "") %>%
+  str_replace_all("I would.*", "") %>%
+  trimws() %>%
+  str_wrap(width = 42)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2', '6', '7') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# List of countries including "All"
+countries <- c("All", levels(q36_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  if (country == "All") {
+    country_data <- q36_data_dd_long
+  } else {
+    country_data <- q36_data_dd_long %>% filter(Country == country)
+  }
+  country_data_agg <- aggregate_data(country_data)
+  
+  value_levels <- levels(q36_data_dd_long$value_desc)
+  
+  for (value_desc in value_levels) {
+    value_data <- country_data_agg %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, value_levels) - 1) %% length(colors_7) + 1
+    color <- colors_7[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(q36_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+q36_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  q36_plot_dd <- add_trace(q36_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                           marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                           insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                           hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                           visible = trace$visible)
+}
+
+q36_plot_dd <- q36_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5, # Center horizontally
+      xanchor = 'center', # Anchor to the center
+      y = 1.2, # Place above the plot
+      yanchor = 'top' # Anchor to the top
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+
+
 ## Likelihood to try
 
 q38_data <- pbff %>%
@@ -1575,6 +1946,131 @@ q38_plot_print <- q38_plot %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.085, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(q38_plot_print, "images/attitudes/q38_plot.png", scale = 8, width = 1200, height = 800)
+
+
+#### By Country (Dropdown menu)
+
+q38_data_dd <- pbff %>%
+  select(starts_with("q38_"))
+
+for (col_name in names(q38_data_dd)) {
+  label <- attr(q38_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(q38_data_dd)[names(q38_data_dd) == col_name] <- label
+  }
+}
+
+q38_data_dd_long <- q38_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+q38_data_dd_long$value_desc <- as_factor(q38_data_dd_long$value)
+q38_data_dd_long$variable <- q38_data_dd_long$variable %>%
+  str_replace_all("\u00A0", "") %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("  ", " ") %>%
+  str_replace_all("Please.*", "") %>%
+  str_replace_all("Imagine.*", "") %>%
+  trimws() %>%
+  str_wrap(width = 46)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c(1:5) & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# List of countries including "All"
+countries <- c("All", levels(q38_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  if (country == "All") {
+    country_data <- q38_data_dd_long
+  } else {
+    country_data <- q38_data_dd_long %>% filter(Country == country)
+  }
+  country_data_agg <- aggregate_data(country_data)
+  
+  value_levels <- levels(q38_data_dd_long$value_desc)
+  
+  for (value_desc in value_levels) {
+    value_data <- country_data_agg %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, value_levels) - 1) %% length(colors_5) + 1
+    color <- colors_5[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(q38_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+q38_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  q38_plot_dd <- add_trace(q38_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                           marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                           insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                           hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                           visible = trace$visible)
+}
+
+q38_plot_dd <- q38_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5, # Center horizontally
+      xanchor = 'center', # Anchor to the center
+      y = 1.2, # Place above the plot
+      yanchor = 'top' # Anchor to the top
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+
+
 
 ## Price conditions
 
@@ -1816,5 +2312,128 @@ q41_plot_print <- q41_plot %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.375, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(q41_plot_print, "images/attitudes/q41_plot.png", scale = 8, width = 1200, height = 800)
+
+
+#### By Country (Dropdown menu)
+
+q41_data_dd <- pbff %>%
+  select(starts_with("q41_"))
+
+for (col_name in names(q41_data_dd)) {
+  label <- attr(q41_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(q41_data_dd)[names(q41_data_dd) == col_name] <- label
+  }
+}
+
+q41_data_dd_long <- q41_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+q41_data_dd_long$value_desc <- as_factor(q41_data_dd_long$value)
+q41_data_dd_long$variable <- q41_data_dd_long$variable %>%
+  str_replace_all("\\xa0", " ") %>% # remove hidden non-breaking spaces
+  str_replace_all("Please.*", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("\\[|\\]", "") %>%
+  str_replace_all("\\(.*\\)", "") %>%
+  str_replace_all("Plant-Based Fermented Foods ", "") %>%
+  str_replace_all("The production and consumption of ", "") %>%
+  str_replace_all("  ", " ") %>%
+  trimws() %>%
+  str_wrap(width = 60)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2', '6', '7') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# List of countries including "All"
+countries <- c("All", levels(q41_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  if (country == "All") {
+    country_data <- q41_data_dd_long
+  } else {
+    country_data <- q41_data_dd_long %>% filter(Country == country)
+  }
+  country_data_agg <- aggregate_data(country_data)
+  
+  value_levels <- levels(q41_data_dd_long$value_desc)
+  
+  for (value_desc in value_levels) {
+    value_data <- country_data_agg %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, value_levels) - 1) %% length(colors_7) + 1
+    color <- colors_7[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(q41_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+q41_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  q41_plot_dd <- add_trace(q41_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                           marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                           insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                           hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                           visible = trace$visible)
+}
+
+q41_plot_dd <- q41_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5, # Center horizontally
+      xanchor = 'center', # Anchor to the center
+      y = 1.2, # Place above the plot
+      yanchor = 'top' # Anchor to the top
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
 
 
