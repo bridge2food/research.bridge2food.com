@@ -368,7 +368,7 @@ Please indicate (with a cross or tick) how often do you consume the following fe
 
 ```{r}
 #| title: Food Choice Motives
-fcm_plot
+fcm_plot_dd
 ```
 
 ::: {.card title="Prompt"}
@@ -423,12 +423,12 @@ Use the 8-point scale in which 0 indicates that the value is opposed to your pri
 
 ```{r}
 #| title: Plant-Based Foods
-att_pbf_plot
+att_pbf_plot_dd
 ```
 
 ```{r}
 #| title: Plant-Based Fermented Foods
-att_pbff_plot
+att_pbff_plot_dd
 ```
 ::: {.card title="Attitudes and Familiarity"}
 
@@ -516,19 +516,19 @@ Please evaluate the following statements on a scale from "Strongly disagree" to 
 
 ```{r}
 #| title: Drink
-att4_plot
+att4_plot_dd
 ```
 ```{r}
 #| title: Yogurt Alternative
-att5_plot
+att5_plot_dd
 ```
 ```{r}
 #| title: Meat Alternative
-att6_plot
+att6_plot_dd
 ```
 ```{r}
 #| title: Protein-Enriched Bread
-att7_plot
+att7_plot_dd
 ```
 
 ::: {.card title="Willingness to try"}
@@ -744,8 +744,16 @@ For each of the sensory modalities (Appearance, Odour, Taste/Favour, Texture/Mou
 
 ## Row
 
-```{r}
-#| title: Submission Period
+[HealthFerm](https://www.healthferm.eu/) is the EU-funded research project investigating innovative pulse and cereal-based food fermentations together with the health effects and consumer perception of novel fermented foods. Work Package 4 “Consumer Studies” has the following objectives:
 
-cat(pbff_t1_mindate, "-", pbff_t2_maxdate)
-```
+*	To identify levers to promote the consumption of foods & meals based on plant-based fermentations.
+*	To assess and monitor the changes in consumer perceptions towards plant-based fermented foods in 9 EU countries.
+
+To achieve these objectives, two cross-sectional surveys are planned, aiming to explore consumer perceptions of plant-based fermented foods (PBFF). For this purpose, HealthFerm set up a questionnaire that addressed attitudes, trust, behaviour, and market opportunities for fermented plant-based foods. The questionnaire included socio-demographic information that will allow for segmenting and statistical modelling.
+
+This report is based on the first wave that took place between December 2023 and February 2024 across BE, CH, DE, DK, FI, FR, IT, RO, SE. The questionnaire covered sociodemographic characteristics (sex, age, locality of residence, education level, financial situation, and dietary habits), to ensure representativeness, sufficient statistical power, and to further control for known confounding.
+
+The survey was completed by respondents who were recruited by Enkettfabriken, with a total of 7,812 participants over the age of 18 and at least 750 respondents per country, equally divided amongst females/males (50% each), and within five age groups: 18-30, 30-40, 40-50, 50-60 and 60+ (approx. 20% in each).
+
+Participants provided information about their eating habits, although only self-identified flexitarians and omnivores were asked about their consumption of meat, and their intentions towards reducing or increasing their currents consumption levels.
+
