@@ -817,7 +817,7 @@ for (country in unique_countries) {
 }
 
 # Access the plot for a specific country
-att1_co_plot["Italy"]
+# att1_co_plot["Italy"]
 
 
 #### By Country (Dropdown menu)
@@ -860,14 +860,18 @@ aggregate_data <- function(data) {
     arrange(desc(value), desc(percentage))
 }
 
-# List of countries
-countries <- unique(att1_data_dd_long$Country)
+# List of countries including "All"
+countries <- c("All", levels(att1_data_dd_long$Country))
 
-# Create traces for each country
+# Create traces for each country including "All"
 traces <- list()
 for (i in seq_along(countries)) {
   country <- countries[i]
-  country_data <- att1_data_dd_long %>% filter(Country == country)
+  if (country == "All") {
+    country_data <- att1_data_dd_long
+  } else {
+    country_data <- att1_data_dd_long %>% filter(Country == country)
+  }
   country_data_agg <- aggregate_data(country_data)
   
   value_levels <- levels(att1_data_dd_long$value_desc)
@@ -900,11 +904,11 @@ for (i in seq_along(countries)) {
   }
 }
 
-# Create dropdown buttons for each country
+# Create dropdown buttons for each country including "All"
 dropdown_buttons <- lapply(seq_along(countries), function(i) {
   list(
     method = "update",
-    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(att1_data_long$value_desc))))),
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(att1_data_dd_long$value_desc))))),
     label = countries[i]
   )
 })
@@ -928,15 +932,15 @@ att1_plot_dd <- att1_plot_dd %>%
     updatemenus = list(list(
       active = 0,
       buttons = dropdown_buttons,
-       x = -0.1,  # Positioning to the right of the plot
-       xanchor = 'right'
-      # y = 0.7,  # Positioning at the top initially
-      # yanchor = 'top'
+      x = 0.5,
+      xanchor = 'center',
+      y = 1.2,
+      yanchor = 'top'
     )),
     margin = list(pad = 4)
   ) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-att1_plot_dd
+
 
 ### Culture
 
@@ -965,7 +969,7 @@ att2_data_long$variable <- att2_data_long$variable %>%
   str_replace_all("  ", " ") %>%
   str_replace_all("Please.*", "") %>%
   trimws() %>%
-  str_wrap(width = 60)
+  str_wrap(width = 30)
 
 # Aggregate and calculate percentages
 att2_data_agg <- att2_data_long %>%
@@ -993,6 +997,128 @@ att2_plot_print <- att2_plot %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.325, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att2_plot_print, "images/attitudes/att2_plot.png", scale = 8, width = 1200, height = 800)
+
+
+#### By Country (Dropdown menu)
+att2_data_dd <- pbff %>%
+  select(starts_with("ATT2_"))
+
+for (col_name in names(att2_data_dd)) {
+  label <- attr(att2_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(att2_data_dd)[names(att2_data_dd) == col_name] <- label
+  }
+}
+
+att2_data_dd_long <- att2_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+att2_data_dd_long$value_desc <- as_factor(att2_data_dd_long$value)
+att2_data_dd_long$variable <- att2_data_dd_long$variable %>%
+  str_replace_all("\u00A0", "") %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("  ", " ") %>%
+  str_replace_all("Please.*", "") %>%
+  trimws() %>%
+  str_wrap(width = 30)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2', '6', '7') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# List of countries including "All"
+countries <- c("All", levels(att2_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  if (country == "All") {
+    country_data <- att2_data_dd_long
+  } else {
+    country_data <- att2_data_dd_long %>% filter(Country == country)
+  }
+  country_data_agg <- aggregate_data(country_data)
+  
+  value_levels <- levels(att2_data_dd_long$value_desc)
+  
+  for (value_desc in value_levels) {
+    value_data <- country_data_agg %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, value_levels) - 1) %% length(colors_7) + 1
+    color <- colors_7[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(att2_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+att2_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  att2_plot_dd <- add_trace(att2_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                            marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                            insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                            hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                            visible = trace$visible)
+}
+
+att2_plot_dd <- att2_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5,
+      xanchor = 'center',
+      y = 1.2,
+      yanchor = 'top'
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+
 
 ### WTT Drinks
 

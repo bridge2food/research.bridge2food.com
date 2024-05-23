@@ -486,10 +486,6 @@ I would be willing to try a product that is prepared through:
 
 ```{r}
 #| title: Familiarity with Raw Materials
-att1_plot
-```
-```{r}
-#| title: By Country
 att1_plot_dd
 ```
 
@@ -505,7 +501,7 @@ Please evaluate how familiar you are with the following raw materials:
 
 ```{r}
 #| title: Food Culture
-att2_plot
+att2_plot_dd
 ```
 
 ::: {.card title="Prompt"}
