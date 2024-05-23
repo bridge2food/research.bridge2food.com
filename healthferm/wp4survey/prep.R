@@ -1,7 +1,7 @@
 
 
 
-pbff <- read_sav("data_raw/3325_Data_240212_FINAL new id[87].sav")
+pbff <- read_sav(paste0(path,"data_raw/3325_Data_240212_FINAL new id[87].sav"))
 
 
 # Combine Weight and Weight_New into Weight

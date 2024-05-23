@@ -730,7 +730,7 @@ att1_data_agg <- att1_data_long %>%
 
 # Plot
 att1_plot <- plot_ly(att1_data_agg, x = ~percentage, y = ~variable,
-                    type = 'bar', color = ~value_desc, colors = colors_7,
+                    type = 'bar', color = ~value_desc, colors = colors_4,
                     orientation = 'h',
                     text = ~text_label,
                     hoverinfo = 'text',
@@ -746,6 +746,197 @@ att1_plot_print <- att1_plot %>%
          legend = list(orientation = 'h', x = -0.025, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att1_plot_print, "images/attitudes/att1_plot.png", scale = 8, width = 1200, height = 800)
 
+
+#### By Country (Individual country plots)
+
+att1_data_co <- pbff %>%
+  select(Country, starts_with("ATT1_"))
+
+# Convert Country to factor
+att1_data_co$Country <- as_factor(att1_data_co$Country)
+
+# Loop through columns and rename them based on their label attribute, excluding the Country column
+for (col_name in names(att1_data_co)) {
+  if (col_name != "Country") {
+    label <- attr(att1_data_co[[col_name]], "label")
+    if (!is.null(label) && label != "") {
+      names(att1_data_co)[names(att1_data_co) == col_name] <- label
+    }
+  }
+}
+
+att1_data_co_long <- att1_data_co %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+att1_data_co_long$value_desc <- as_factor(att1_data_co_long$value)
+att1_data_co_long$variable <- att1_data_co_long$variable %>%
+  str_replace_all("\u00A0", "") %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("  ", " ") %>%
+  str_replace_all("Please.*", "") %>%
+  trimws() %>%
+  str_wrap(width = 30)
+
+# Aggregate and calculate percentages
+att1_data_co_agg <- att1_data_co_long %>%
+  group_by(Country, variable, value, value_desc) %>%
+  summarise(count = n(), .groups = 'drop') %>%
+  group_by(Country, variable) %>%
+  mutate(percentage = count / sum(count) * 100,
+         text_label = ifelse(value %in% c(1:4) & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+  arrange(Country, desc(value), desc(percentage))
+
+# Initialize list to store plots
+att1_co_plot <- list()
+
+# Generate plots for each country
+unique_countries <- levels(att1_data_co$Country)
+
+for (country in unique_countries) {
+  country_data <- att1_data_co_agg %>% filter(Country == country)
+  
+  plot <- plot_ly(country_data, x = ~percentage, y = ~variable,
+                  type = 'bar', color = ~value_desc, colors = colors_4,
+                  orientation = 'h',
+                  text = ~text_label,
+                  hoverinfo = 'text',
+                  hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+                  meta = ~value_desc,
+                  textposition = 'inside',
+                  insidetextanchor = 'middle',
+                  insidetextfont = list(color = 'white')) %>%
+    layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
+    config(displayModeBar = FALSE, displaylogo = FALSE)
+  
+  att1_co_plot[[as.character(country)]] <- plot
+}
+
+# Access the plot for a specific country
+att1_co_plot["Italy"]
+
+
+#### By Country (Dropdown menu)
+
+att1_data_dd <- pbff %>%
+  select(starts_with("ATT1_"))
+
+for (col_name in names(att1_data_dd)) {
+  label <- attr(att1_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(att1_data_dd)[names(att1_data_dd) == col_name] <- label
+  }
+}
+
+att1_data_dd_long <- att1_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+att1_data_dd_long$value_desc <- as_factor(att1_data_dd_long$value)
+att1_data_dd_long$variable <- att1_data_dd_long$variable %>%
+  str_replace_all("\u00A0", "") %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\.", "") %>%
+  str_replace_all("  ", " ") %>%
+  str_replace_all("Please.*", "") %>%
+  trimws() %>%
+  str_wrap(width = 30)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c(1:4) & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# List of countries
+countries <- unique(att1_data_dd_long$Country)
+
+# Create traces for each country
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  country_data <- att1_data_dd_long %>% filter(Country == country)
+  country_data_agg <- aggregate_data(country_data)
+  
+  value_levels <- levels(att1_data_dd_long$value_desc)
+  
+  for (value_desc in value_levels) {
+    value_data <- country_data_agg %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, value_levels) - 1) %% length(colors_4) + 1
+    color <- colors_4[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(att1_data_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+att1_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  att1_plot_dd <- add_trace(att1_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                            marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                            insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                            hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                            visible = trace$visible)
+}
+
+att1_plot_dd <- att1_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+       x = -0.1,  # Positioning to the right of the plot
+       xanchor = 'right'
+      # y = 0.7,  # Positioning at the top initially
+      # yanchor = 'top'
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+att1_plot_dd
 
 ### Culture
 

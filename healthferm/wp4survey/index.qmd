@@ -488,6 +488,10 @@ I would be willing to try a product that is prepared through:
 #| title: Familiarity with Raw Materials
 att1_plot
 ```
+```{r}
+#| title: By Country
+att1_plot_dd
+```
 
 ::: {.card title="Prompt"}
 
