@@ -475,7 +475,7 @@ I would be willing to try a Plant-Based Fermented ______ made from
 
 ```{r}
 #| title: Price Conditions
-price_cond_plot
+price_cond_plot_dd
 ```
 
 ::: {.card title="Prompt"}

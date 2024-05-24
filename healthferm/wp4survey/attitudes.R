@@ -3002,6 +3002,193 @@ price_cond_plot <- plot_ly(data = price_cond_combined_data, x = ~variable, y = ~
 save_image(price_cond_plot, "images/attitudes/price_cond_plot.png", scale = 8)
 
 
+#### By Country (Dropdown menu)
+
+q39_1_data_dd <- pbff %>%
+  select(starts_with("q39_1_"))
+
+for (col_name in names(q39_1_data_dd)) {
+  label <- attr(q39_1_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(q39_1_data_dd)[names(q39_1_data_dd) == col_name] <- label
+  }
+}
+
+q39_1_data_dd_long <- q39_1_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+q39_1_data_dd_long$value_desc <- as_factor(q39_1_data_dd_long$value)
+q39_1_data_dd_long$variable <- q39_1_data_dd_long$variable %>%
+  str_replace_all("\\xa0", " ") %>%
+  str_replace_all("Plant-Based Fermented meat alternative", "") %>%
+  str_replace_all("In which.*", "") %>%
+  str_replace_all("\\[|\\]", "") %>%
+  trimws() %>%
+  str_wrap(width = 60)
+
+# Repeat for q39_2_data and q39_3_data
+q39_2_data_dd <- pbff %>%
+  select(starts_with("q39_2_"))
+
+for (col_name in names(q39_2_data_dd)) {
+  label <- attr(q39_2_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(q39_2_data_dd)[names(q39_2_data_dd) == col_name] <- label
+  }
+}
+
+q39_2_data_dd_long <- q39_2_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+q39_2_data_dd_long$value_desc <- as_factor(q39_2_data_dd_long$value)
+q39_2_data_dd_long$variable <- q39_2_data_dd_long$variable %>%
+  str_replace_all("\\xa0", " ") %>%
+  str_replace_all("Plant-Based Fermented yogurt alternative", "") %>%
+  str_replace_all("In which.*", "") %>%
+  str_replace_all("\\[|\\]", "") %>%
+  trimws() %>%
+  str_wrap(width = 60)
+
+q39_3_data_dd <- pbff %>%
+  select(starts_with("q39_3_"))
+
+for (col_name in names(q39_3_data_dd)) {
+  label <- attr(q39_3_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(q39_3_data_dd)[names(q39_3_data_dd) == col_name] <- label
+  }
+}
+
+q39_3_data_dd_long <- q39_3_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+q39_3_data_dd_long$value_desc <- as_factor(q39_3_data_dd_long$value)
+q39_3_data_dd_long$variable <- q39_3_data_dd_long$variable %>%
+  str_replace_all("\\xa0", " ") %>%
+  str_replace_all("Plant-Based Fermented milk alternative", "") %>%
+  str_replace_all("In which.*", "") %>%
+  str_replace_all("\\[|\\]", "") %>%
+  trimws() %>%
+  str_wrap(width = 60)
+
+# Create a function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc, Country) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable, Country) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# Aggregate the data
+q39_1_data_dd_agg <- aggregate_data(q39_1_data_dd_long)
+q39_2_data_dd_agg <- aggregate_data(q39_2_data_dd_long)
+q39_3_data_dd_agg <- aggregate_data(q39_3_data_dd_long)
+
+# Add category
+q39_1_data_dd_agg$category <- "Meat"
+q39_2_data_dd_agg$category <- "Yogurt"
+q39_3_data_dd_agg$category <- "Milk"
+
+# Combine data without filtering
+price_cond_combined_data_dd <- bind_rows(q39_1_data_dd_agg, q39_2_data_dd_agg, q39_3_data_dd_agg)
+
+# Summarize data for 'All'
+price_cond_all_data <- price_cond_combined_data_dd %>%
+  group_by(variable, category, value_desc) %>%
+  summarise(count = sum(count), .groups = 'drop') %>%
+  mutate(Country = "All")
+
+# Calculate percentages for 'All'
+price_cond_all_data <- price_cond_all_data %>%
+  group_by(variable, category) %>%
+  mutate(total_count = sum(count),
+         percentage = count / total_count * 100,
+         text_label = ifelse(percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+  ungroup()
+
+price_cond_combined_data_dd <- bind_rows(price_cond_combined_data_dd, price_cond_all_data)
+
+# Filter for value == 1 after combining data
+price_cond_combined_data_dd <- price_cond_combined_data_dd %>% filter(value_desc == "Yes")
+
+# List of countries including "All"
+countries <- c("All", levels(q39_1_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  country_data <- price_cond_combined_data_dd %>% filter(Country == country)
+  
+  for (category in unique(price_cond_combined_data_dd$category)) {
+    category_data <- country_data %>% filter(category == !!category)
+    
+    trace <- list(
+      x = category_data$variable,
+      y = category_data$percentage,
+      type = 'bar',
+      name = as.character(category),
+      marker = list(color = rev(colors_3)[match(category, unique(price_cond_combined_data_dd$category))]),
+      text = category_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
+      meta = category_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(unique(price_cond_combined_data_dd$category))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+price_cond_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  price_cond_plot_dd <- add_trace(price_cond_plot_dd, x = trace$x, y = trace$y, type = trace$type,
+                                  marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                                  insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                                  hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                                  visible = trace$visible)
+}
+
+price_cond_plot_dd <- price_cond_plot_dd %>%
+  layout(
+    barmode = 'group',
+    xaxis = list(title = ""),
+    yaxis = list(title = "Percentage", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5, # Center horizontally
+      xanchor = 'center', # Anchor to the center
+      y = 1.2, # Place above the plot
+      yanchor = 'top' # Anchor to the top
+    )),
+    margin = list(pad = 4),
+    legend = list(traceorder = 'reversed')
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+
+
 ### Social, Environmental and Economic Sustainability
 
 q41_data <- pbff %>%
