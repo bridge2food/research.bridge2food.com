@@ -201,29 +201,6 @@ prev_diet_plot
 reasonforswitch_from_omn_plot
 ```
 
-## Row 
-
-### Column {.tabset}
-
-```{r}
-#| title: Frequency of Consumption
-#FC_combined_plot
-fc_plot
-```
-
-::: {.card title="Prompt"}
-
-Before we continue to the next questions, we would like to give you a few food definitions that are important to know for this survey:
-
-* **Legumes** are sources of Plant-Based **protein**, and include lentils, beans, soy, and chickpeas (dried, canned, frozen).
-
-* **Legume-Based foods** are made **solely** from the seeds of **legumes***, and include tofu, tempeh, falafel, hummus, and soy-based products.
-
-* **Plant-Based alternatives** are products made solely from Plant-Based ingredients and are developed to **resemble conventional animal-based foods** such as meat or dairy. (Examples include soy burgers and soy milk).
-
-Which statement best describes how frequently you have consumed the following foods in the last 12 months? 
-
-:::
 
 ## Row
 
@@ -339,6 +316,31 @@ Dairy products (e.g., milk, yogurt, cheese, etc.)
 
 :::
 
+## Row 
+
+### Column {.tabset}
+
+```{r}
+#| title: Frequency of Consumption
+#FC_combined_plot
+fc_plot
+```
+
+::: {.card title="Prompt"}
+
+Before we continue to the next questions, we would like to give you a few food definitions that are important to know for this survey:
+
+* **Legumes** are sources of Plant-Based **protein**, and include lentils, beans, soy, and chickpeas (dried, canned, frozen).
+
+* **Legume-Based foods** are made **solely** from the seeds of **legumes***, and include tofu, tempeh, falafel, hummus, and soy-based products.
+
+* **Plant-Based alternatives** are products made solely from Plant-Based ingredients and are developed to **resemble conventional animal-based foods** such as meat or dairy. (Examples include soy burgers and soy milk).
+
+Which statement best describes how frequently you have consumed the following foods in the last 12 months? 
+
+:::
+
+
 ## Row
 
 ### Column {.tabset}
@@ -362,79 +364,7 @@ Please indicate (with a cross or tick) how often do you consume the following fe
 
 # Attitudes
 
-## Row
 
-### Column {.tabset}
-
-```{r}
-#| title: Food Choice Motives
-fcm_plot_dd
-```
-
-::: {.card title="Prompt"}
-
-It is important to me that the food I eat on a typical day is…
-
-* "healthy";
-* "is a way of monitoring my mood (e.g.. a good feeling or coping with stress’)";
-* "is convenient (in buying and preparing)";
-* "provides me with pleasurable sensations (e.g.. texture. appearance. smell and taste)";
-* "Is organic and natural";
-* "is affordable";
-* "helps me control my weight";
-* "is familiar";
-* "is environmentally friendly";
-* "is animal friendly";
-* "is fairly traded and locally produced". 
-
-:::
-
-## Row
-
-### Column {.tabset}
-
-```{r}
-#| title: Values
-values_plot
-```
-
-:::{.card title="Prompt"}
-
-Please, rate the importance of the following values as a life-guiding principle for you.
-
-Use the 8-point scale in which 0 indicates that the value is opposed to your principles, 1 indicates that the values is not important for you, 4 indicates that the values is important, and 8 indicates that the value is of supreme importance for you.
-
-* POWER (social power, authority, wealth)
-* ACHIEVEMENT (success, capability, ambition, influence on people and events)
-* HEDONISM (gratification of desires, enjoyment in life, self-indulgence)
-* STIMULATION (daring, a varied and challenging life, an exciting life)
-* SELF-DIRECTION (creativity, freedom, curiosity, independence, choosing one's own goals)
-* UNIVERSALISM (broad-mindedness, beauty of nature and arts, social justice, a world at peace, equality, wisdom, unity with nature, environmental protection)
-* BENEVOLENCE (helpfulness, honesty, forgiveness, loyalty, responsibility)
-* TRADITION (respect for tradition, humbleness, accepting one's portion in life, devotion, modesty)
-* CONFORMITY (obedience, honoring parents and elders, self-discipline, politeness)
-* SECURITY (national security, family security, social order, cleanliness, reciprocation of favors)
-
-:::
-
-## Row
-
-### Column {.tabset}
-
-```{r}
-#| title: Plant-Based Foods
-att_pbf_plot_dd
-```
-
-```{r}
-#| title: Plant-Based Fermented Foods
-att_pbff_plot_dd
-```
-::: {.card title="Attitudes and Familiarity"}
-
-Please evaluate the following statements about your attitudes towards **Plant-Based Foods** on a scale from "Strongly disagree" to "Strongly agree", taking into account the previously given definition.
-
-:::
 
 ## Row
 
@@ -537,6 +467,23 @@ I would be willing to try a Plant-Based Fermented ______ made from
 
 :::
 
+
+
+## Row
+
+### Column {.tabset}
+
+```{r}
+#| title: Price Conditions
+price_cond_plot
+```
+
+::: {.card title="Prompt"}
+
+In which price condition (comparing to animal-sourced foods) would you buy the following fermented plant-based alternatives, that are optimized for taste, health and sustainability (multiple choice is allowed)? 
+
+:::
+
 ## Row
 
 ### Column {.tabset}
@@ -597,13 +544,13 @@ Imagine the following products are available on the market. How likely are you t
 ### Column {.tabset}
 
 ```{r}
-#| title: Price Conditions
-price_cond_plot
+#| title: Social, Environmental and Economic Sustainability
+q41_plot_dd
 ```
 
 ::: {.card title="Prompt"}
 
-In which price condition (comparing to animal-sourced foods) would you buy the following fermented plant-based alternatives, that are optimized for taste, health and sustainability (multiple choice is allowed)? 
+Please evaluate the following statements about the role that Plant-Based Fermented Foods may have on social, environmental and economic sustainability on a scale from "Strongly disagree" to "Strongly agree".
 
 :::
 
@@ -612,13 +559,74 @@ In which price condition (comparing to animal-sourced foods) would you buy the f
 ### Column {.tabset}
 
 ```{r}
-#| title: Social, Environmental and Economic Sustainability
-q41_plot_dd
+#| title: Food Choice Motives
+fcm_plot_dd
 ```
 
 ::: {.card title="Prompt"}
 
-Please evaluate the following statements about the role that Plant-Based Fermented Foods may have on social, environmental and economic sustainability on a scale from "Strongly disagree" to "Strongly agree".
+It is important to me that the food I eat on a typical day is…
+
+* "healthy";
+* "is a way of monitoring my mood (e.g.. a good feeling or coping with stress’)";
+* "is convenient (in buying and preparing)";
+* "provides me with pleasurable sensations (e.g.. texture. appearance. smell and taste)";
+* "Is organic and natural";
+* "is affordable";
+* "helps me control my weight";
+* "is familiar";
+* "is environmentally friendly";
+* "is animal friendly";
+* "is fairly traded and locally produced". 
+
+:::
+
+
+
+## Row
+
+### Column {.tabset}
+
+```{r}
+#| title: Plant-Based Foods
+att_pbf_plot_dd
+```
+
+```{r}
+#| title: Plant-Based Fermented Foods
+att_pbff_plot_dd
+```
+::: {.card title="Attitudes and Familiarity"}
+
+Please evaluate the following statements about your attitudes towards **Plant-Based Foods** on a scale from "Strongly disagree" to "Strongly agree", taking into account the previously given definition.
+
+:::
+
+## Row
+
+### Column {.tabset}
+
+```{r}
+#| title: Values
+values_plot
+```
+
+:::{.card title="Prompt"}
+
+Please, rate the importance of the following values as a life-guiding principle for you.
+
+Use the 8-point scale in which 0 indicates that the value is opposed to your principles, 1 indicates that the values is not important for you, 4 indicates that the values is important, and 8 indicates that the value is of supreme importance for you.
+
+* POWER (social power, authority, wealth)
+* ACHIEVEMENT (success, capability, ambition, influence on people and events)
+* HEDONISM (gratification of desires, enjoyment in life, self-indulgence)
+* STIMULATION (daring, a varied and challenging life, an exciting life)
+* SELF-DIRECTION (creativity, freedom, curiosity, independence, choosing one's own goals)
+* UNIVERSALISM (broad-mindedness, beauty of nature and arts, social justice, a world at peace, equality, wisdom, unity with nature, environmental protection)
+* BENEVOLENCE (helpfulness, honesty, forgiveness, loyalty, responsibility)
+* TRADITION (respect for tradition, humbleness, accepting one's portion in life, devotion, modesty)
+* CONFORMITY (obedience, honoring parents and elders, self-discipline, politeness)
+* SECURITY (national security, family security, social order, cleanliness, reciprocation of favors)
 
 :::
 
