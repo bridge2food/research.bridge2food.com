@@ -608,7 +608,7 @@ Please evaluate the following statements about your attitudes towards **Plant-Ba
 
 ```{r}
 #| title: Values
-values_plot
+values_plot_dd
 ```
 
 :::{.card title="Prompt"}
