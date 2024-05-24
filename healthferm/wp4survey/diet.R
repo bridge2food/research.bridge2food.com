@@ -290,54 +290,6 @@ save_image(reasonforswitch_from_omn_plot, "images/diet/reasonforswitch_from_omn_
 
 ### Frequency of consumption
 
-# FC_plots_list <- list()
-# 
-# # Loop through the column names and create a histogram for each
-# for (i in 1:18) {
-#   variable_name <- paste("FC", i, sep="_")
-#   plot_name <- paste(variable_name, "plot", sep="_")
-#   
-#   # Extract the label for the current variable
-#   var_label <- attr(pbff[[variable_name]], "label")
-#   if (is.null(var_label)) var_label <- variable_name  # Use the variable name if no label is found
-#   
-#   # Clean the label
-#   var_label <- var_label %>%
-#     str_replace_all("\\[", "") %>%
-#     str_replace_all("\\]", "") %>%
-#     str_replace_all("Which statement best describes how frequently you have consumed the following foods in the last 12 months\\?", "") %>%
-#     str_replace_all("\\([^\\)]*\\)", "")
-#   
-#   # Create histogram using plot_ly
-#   plot <- pbff %>%
-#     plot_ly(x = as_factor(.[[variable_name]]), type = "histogram", name = var_label) %>%
-#     # layout(margin = list(pad=4), title = var_label) %>%
-#     config(displayModeBar = FALSE, displaylogo = FALSE)
-#   
-#   # Store both plot and label in a sub-list within the main list
-#   FC_plots_list[[plot_name]] <- list(plot = plot, label = var_label)
-# }
-# 
-# # To access the plot for FC_3:
-# # FC_plots_list$FC_9_plot$plot
-# 
-# # To access the label for FC_3:
-# # FC_plots_list$FC_3_plot$label
-# 
-# # Combine plots into a single subplot grid
-# 
-# num_rows <- 6 
-# 
-# # Create the subplot
-# FC_combined_plot <- subplot(
-#   lapply(names(FC_plots_list), function(x) FC_plots_list[[x]]$plot),
-#   nrows = num_rows, # ncols = num_cols,
-#   shareX = TRUE, shareY = TRUE,
-#   titleX = F,  # Share x-axis title
-#   titleY = F,  # Share y-axis title
-#   margin = 0.05   # Set margins to prevent overlap
-# ) 
-
 fc_data <- pbff %>%
   select(starts_with("FC_"))
 
@@ -386,6 +338,132 @@ fc_plot_print <- fc_plot %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.225, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(fc_plot_print, "images/diet/fc_plot.png", scale = 8, width = 1200, height = 800)
+
+
+#### By Country (Dropdown menu) for FC data
+
+fc_data_dd <- pbff %>%
+  select(starts_with("FC_"))
+
+for (col_name in names(fc_data_dd)) {
+  label <- attr(fc_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(fc_data_dd)[names(fc_data_dd) == col_name] <- label
+  }
+}
+
+fc_data_dd_long <- fc_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+fc_data_dd_long$value_desc <- as_factor(fc_data_dd_long$value)
+fc_data_dd_long$variable <- fc_data_dd_long$variable %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_replace_all("Which statement best describes how frequently you have consumed the following foods in the last 12 months\\?", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  trimws()
+
+# Function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc, Country) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable, Country) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2', '6', '7') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# Aggregate the data
+fc_data_dd_agg <- aggregate_data(fc_data_dd_long)
+
+# Summarize data for 'All'
+fc_all_data <- fc_data_dd_long %>%
+  group_by(variable, value, value_desc) %>%
+  summarise(count = n(), .groups = 'drop') %>%
+  group_by(variable) %>%
+  mutate(percentage = count / sum(count) * 100,
+         text_label = ifelse(value %in% c('1', '2', '6', '7') & percentage > 5, paste0(round(percentage, 1), "%"), ""),
+         Country = "All")
+
+fc_data_combined <- bind_rows(fc_data_dd_agg, fc_all_data) %>%
+  arrange(desc(value), desc(percentage))
+
+# List of countries including "All"
+countries <- c("All", levels(fc_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  country_data <- fc_data_combined %>% filter(Country == country)
+  
+  for (value_desc in levels(fc_data_dd_long$value_desc)) {
+    value_data <- country_data %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, levels(fc_data_dd_long$value_desc)) - 1) %% length(colors_7) + 1
+    color <- colors_7[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(fc_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+fc_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  fc_plot_dd <- add_trace(fc_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                          marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                          insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                          hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                          visible = trace$visible)
+}
+
+fc_plot_dd <- fc_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5, # Center horizontally
+      xanchor = 'center', # Anchor to the center
+      y = 1.2, # Place above the plot
+      yanchor = 'top' # Anchor to the top
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
 
 
 ### Delta meat consumption
@@ -1455,64 +1533,136 @@ fc1_plot_print <- fc1_plot %>%
 save_image(fc1_plot_print, "images/diet/fc1_plot.png", scale = 8, width = 800)
 
 
-# FC1_plots_list <- list()
-# 
-# # Loop through the column names and create a histogram for each
-# for (i in 1:15) {
-#   variable_name <- paste("FC1", i, sep="_")
-#   plot_name <- paste(variable_name, "plot", sep="_")
-#   
-#   # Extract the label for the current variable
-#   var_label <- attr(pbff[[variable_name]], "label")
-#   if (is.null(var_label)) var_label <- variable_name  # Use the variable name if no label is found
-#   
-#   # Shorten labels for visualization
-#   var_label <- var_label %>%
-#     str_replace_all("\\[", "") %>%
-#     str_replace_all("\\]", "") %>%
-#     str_remove("Please indicate.*") %>%
-#     str_replace_all("Plant-Based Fermented dairy alternatives \\(e.g., ", "") %>%
-#     str_replace_all("\\([^\\)]*\\)", "") %>%
-#     str_replace_all("\\)", "") %>%
-#     str_replace_all(", with live organisms", "")
-#   
-#   # Create histogram using plot_ly
-#   plot <- pbff %>%
-#     plot_ly(x = as_factor(.[[variable_name]]), type = "histogram", name = var_label) %>%
-#     # layout(margin = list(pad=4), title = var_label) %>%
-#     config(displayModeBar = FALSE, displaylogo = FALSE)
-#   
-#   # Store both plot and label in a sub-list within the main list
-#   FC1_plots_list[[plot_name]] <- list(plot = plot, label = var_label)
-# }
-# 
-# # To access the plot for FC_3:
-# # FC1_plots_list$FC1_9_plot$plot
-# 
-# # To access the label for FC_3:
-# # FC1_plots_list$FC1_3_plot$label
-# 
-# # Combine plots into subplot grids
-# 
-# num_rows_1 <- 5
-# 
-# FC1_combined_plot_1 <- subplot(
-#   lapply(names(FC1_plots_list)[1:10], function(x) FC1_plots_list[[x]]$plot),
-#   nrows = num_rows_1,
-#   shareX = TRUE, shareY = TRUE,
-#   titleX = FALSE,  # Share x-axis title
-#   titleY = FALSE,  # Share y-axis title
-#   margin = 0.05    # Set margins to prevent overlap
-# )
-# 
-# num_rows_2 <- 3  
-# 
-# FC1_combined_plot_2 <- subplot(
-#   lapply(names(FC1_plots_list)[11:15], function(x) FC1_plots_list[[x]]$plot),
-#   nrows = num_rows_2,
-#   shareX = TRUE, shareY = TRUE,
-#   titleX = FALSE,  # Share x-axis title
-#   titleY = FALSE,  # Share y-axis title
-#   margin = 0.05    # Set margins to prevent overlap
-# )
+#### By Country (Dropdown menu) for FC1 data
+
+fc1_data_dd <- pbff %>%
+  select(starts_with("FC1_"))
+
+for (col_name in names(fc1_data_dd)) {
+  label <- attr(fc1_data_dd[[col_name]], "label")
+  if (!is.null(label) && label != "") {
+    names(fc1_data_dd)[names(fc1_data_dd) == col_name] <- label
+  }
+}
+
+fc1_data_dd_long <- fc1_data_dd %>%
+  mutate(id = row_number(), Country = as_factor(pbff$Country)) %>%
+  pivot_longer(cols = -c(id, Country), names_to = "variable", values_to = "value")
+
+# Get labels and clean them
+fc1_data_dd_long$value_desc <- as_factor(fc1_data_dd_long$value)
+fc1_data_dd_long$variable <- fc1_data_dd_long$variable %>%
+  str_replace_all("\\[", "") %>%
+  str_replace_all("\\]", "") %>%
+  str_remove("Please indicate.*") %>%
+  str_replace_all("Plant-Based Fermented dairy alternatives \\(e.g., ", "") %>%
+  str_replace_all("\\([^\\)]*\\)", "") %>%
+  str_replace_all("\\)", "") %>%
+  str_replace_all(", with live organisms", "") %>%
+  str_replace_all("Plant-Based Yoghurt", "Plant-Based Fermented yoghurt") %>%
+  str_replace_all("Plant-Based Ice cream", "Plant-Based Fermented ice cream") %>%
+  str_replace_all("Plant-Based Soft/Firm", "Plant-Based Fermented soft/firm") %>%
+  trimws()
+
+# Function to aggregate and calculate percentages
+aggregate_data <- function(data) {
+  data %>%
+    group_by(variable, value, value_desc, Country) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+    group_by(variable, Country) %>%
+    mutate(percentage = count / sum(count) * 100,
+           text_label = ifelse(value %in% c('1', '2', '8', '9') & percentage > 5, paste0(round(percentage, 1), "%"), "")) %>%
+    arrange(desc(value), desc(percentage))
+}
+
+# Aggregate the data
+fc1_data_dd_agg <- aggregate_data(fc1_data_dd_long)
+
+# Summarize data for 'All'
+fc1_all_data <- fc1_data_dd_long %>%
+  group_by(variable, value, value_desc) %>%
+  summarise(count = n(), .groups = 'drop') %>%
+  group_by(variable) %>%
+  mutate(percentage = count / sum(count) * 100,
+         text_label = ifelse(value %in% c('1', '2', '8', '9') & percentage > 5, paste0(round(percentage, 1), "%"), ""),
+         Country = "All")
+
+fc1_data_combined <- bind_rows(fc1_data_dd_agg, fc1_all_data) %>%
+  arrange(desc(value), desc(percentage))
+
+# List of countries including "All"
+countries <- c("All", levels(fc1_data_dd_long$Country))
+
+# Create traces for each country including "All"
+traces <- list()
+for (i in seq_along(countries)) {
+  country <- countries[i]
+  country_data <- fc1_data_combined %>% filter(Country == country)
+  
+  for (value_desc in levels(fc1_data_dd_long$value_desc)) {
+    value_data <- country_data %>% filter(value_desc == !!value_desc)
+    if (nrow(value_data) == 0) next
+    
+    value_index <- (match(value_desc, levels(fc1_data_dd_long$value_desc)) - 1) %% length(colors_9_alt) + 1
+    color <- colors_9_alt[value_index]
+    
+    trace <- list(
+      x = value_data$percentage,
+      y = value_data$variable,
+      type = 'bar',
+      orientation = 'h',
+      name = as.character(value_desc),
+      marker = list(color = color),
+      text = value_data$text_label,
+      textposition = 'inside',
+      insidetextanchor = 'middle',
+      insidetextfont = list(color = 'white'),
+      hoverinfo = 'text',
+      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+      meta = value_data$value_desc,
+      visible = ifelse(i == 1, TRUE, FALSE) # Only the first trace is visible initially
+    )
+    
+    traces <- append(traces, list(trace))
+  }
+}
+
+# Create dropdown buttons for each country including "All"
+dropdown_buttons <- lapply(seq_along(countries), function(i) {
+  list(
+    method = "update",
+    args = list(list(visible = rep(i == seq_along(countries), each = length(levels(fc1_data_dd_long$value_desc))))),
+    label = countries[i]
+  )
+})
+
+# Create the plot
+fc1_plot_dd <- plot_ly()
+
+for (trace in traces) {
+  fc1_plot_dd <- add_trace(fc1_plot_dd, x = trace$x, y = trace$y, type = trace$type, orientation = trace$orientation,
+                           marker = trace$marker, name = trace$name, text = trace$text, textposition = trace$textposition,
+                           insidetextanchor = trace$insidetextanchor, insidetextfont = trace$insidetextfont,
+                           hoverinfo = trace$hoverinfo, hovertemplate = trace$hovertemplate, meta = trace$meta,
+                           visible = trace$visible)
+}
+
+fc1_plot_dd <- fc1_plot_dd %>%
+  layout(
+    barmode = 'stack',
+    xaxis = list(title = ""),
+    yaxis = list(title = "", categoryorder = "trace"),
+    updatemenus = list(list(
+      active = 0,
+      buttons = dropdown_buttons,
+      x = 0.5, # Center horizontally
+      xanchor = 'center', # Anchor to the center
+      y = 1.2, # Place above the plot
+      yanchor = 'top' # Anchor to the top
+    )),
+    margin = list(pad = 4)
+  ) %>%
+  config(displayModeBar = FALSE, displaylogo = FALSE)
+
+
 

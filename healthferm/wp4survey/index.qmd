@@ -323,7 +323,7 @@ Dairy products (e.g., milk, yogurt, cheese, etc.)
 ```{r}
 #| title: Frequency of Consumption
 #FC_combined_plot
-fc_plot
+fc_plot_dd
 ```
 
 ::: {.card title="Prompt"}
@@ -347,7 +347,7 @@ Which statement best describes how frequently you have consumed the following fo
 
 ```{r}
 #| title: Frequency of Consumption of Plant-Based Fermented Foods
-fc1_plot
+fc1_plot_dd
 ```
 
 ::: {.card title="Prompt"}
