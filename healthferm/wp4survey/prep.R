@@ -5,6 +5,16 @@ library(plotly)
 
 pbff <- read_sav(paste0(path,"data_raw/3325_Data_240212_FINAL new id[87].sav"))
 
+# create codebook
+variable_names <- names(pbff)
+variable_labels <- sapply(pbff, function(x) {
+  label <- attr(x, "label")
+  if (is.null(label)) "" else label
+})
+variables <- data.frame(variable_name = variable_names,
+                            variable_label = variable_labels,
+                            stringsAsFactors = FALSE)
+write_csv(variables, paste0(path, "data_raw/variables.csv"))
 
 # Combine Weight and Weight_New into Weight
 pbff <- pbff %>%
