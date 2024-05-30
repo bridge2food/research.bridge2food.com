@@ -1345,9 +1345,8 @@ att2_plot <- plot_ly(att2_data_agg, x = ~percentage, y = ~variable,
 att2_plot_print <- att2_plot %>%
   style(textposition = 'inside') %>%
   layout(margin = list(t=100),
-         legend = list(orientation = 'h', x = -0.325, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
+         legend = list(orientation = 'h', x = -0.115, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att2_plot_print, "images/attitudes/att2_plot.png", scale = 8, width = 1200, height = 800)
-
 
 #### By Country (Dropdown menu)
 
