@@ -14,7 +14,9 @@ diet_lifestyle_plot <- plot_ly(diet_lifestyle, labels = ~diet_name, values = ~co
                                marker = list(colors = colors_5)) %>%
   layout(legend = list(traceorder = 'reversed')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(diet_lifestyle_plot, "images/diet/diet_lifestyle_plot.png", scale = 8, width = 750)
+diet_lifestyle_plot_print <- diet_lifestyle_plot %>%
+  style(textposition = 'inside')
+save_image(diet_lifestyle_plot_print, "images/diet/diet_lifestyle_plot.png", scale = 8, width = 750)
 
 ### Diet by country
 
@@ -44,7 +46,7 @@ diet_country_plot <- plot_ly(diet_country, x = ~percentage, y = ~Country,
                              hoverinfo = 'text',
                              hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                              meta = ~diet,
-                             textposition = 'inside',
+                             textposition = 'none',
                              texttemplate = '%{text}',
                              insidetextfont = list(color = 'white'),
                              insidetextanchor = 'middle',
@@ -54,7 +56,9 @@ diet_country_plot <- plot_ly(diet_country, x = ~percentage, y = ~Country,
          yaxis = list(title = '', categoryorder = 'trace'),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(diet_country_plot, "images/diet/diet_country_plot.png", scale = 8, width = 800)
+diet_country_plot_print <- diet_country_plot %>%
+  style(textposition = 'inside')
+save_image(diet_country_plot_print, "images/diet/diet_country_plot.png", scale = 8, width = 800)
 
 ### Diet by age group
 
@@ -71,7 +75,7 @@ diet_age_plot <- plot_ly(diet_age, x = ~percentage, y = ~as_factor(age_groups_2)
                          hoverinfo = 'text',
                          hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                          meta = ~as_factor(diet),
-                         textposition = 'inside',
+                         textposition = 'none',
                          texttemplate = '%{text}',
                          insidetextfont = list(color = 'white'),
                          insidetextanchor = 'middle',
@@ -81,7 +85,9 @@ diet_age_plot <- plot_ly(diet_age, x = ~percentage, y = ~as_factor(age_groups_2)
          yaxis = list(title = ''),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(diet_age_plot, "images/diet/diet_age_plot.png", scale = 8, width = 800)
+diet_age_plot_print <- diet_age_plot %>%
+  style(textposition = 'inside')
+save_image(diet_age_plot_print, "images/diet/diet_age_plot.png", scale = 8, width = 800)
 
 ### Diet by education level
 
@@ -98,7 +104,7 @@ diet_edu_plot <- plot_ly(diet_edu, x = ~percentage, y = ~edu_desc,
                          hoverinfo = 'text',
                          hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                          meta = ~as_factor(diet),
-                         textposition = 'inside',
+                         textposition = 'none',
                          texttemplate = '%{text}',
                          insidetextfont = list(color = 'white'),
                          insidetextanchor = 'middle',
@@ -108,7 +114,9 @@ diet_edu_plot <- plot_ly(diet_edu, x = ~percentage, y = ~edu_desc,
          yaxis = list(title = ''),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(diet_edu_plot, "images/diet/diet_edu_plot.png", scale = 8, width = 800)
+diet_edu_plot_print <- diet_edu_plot %>%
+  style(textposition = 'inside')
+save_image(diet_edu_plot_print, "images/diet/diet_edu_plot.png", scale = 8, width = 800)
 
 ### Diet by SES
 
@@ -125,7 +133,7 @@ diet_ses_plot <- plot_ly(diet_ses, x = ~percentage, y = ~ses_desc,
                          hoverinfo = 'text',  # Display text and x value on hover
                          hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                          meta = ~as_factor(diet),
-                         textposition = 'inside',
+                         textposition = 'none',
                          texttemplate = '%{text}',
                          insidetextfont = list(color = 'white'),
                          insidetextanchor = 'middle',
@@ -135,7 +143,9 @@ diet_ses_plot <- plot_ly(diet_ses, x = ~percentage, y = ~ses_desc,
          yaxis = list(title = ''),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(diet_ses_plot, "images/diet/diet_ses_plot.png", scale = 8, width = 800)
+diet_ses_plot_print <- diet_ses_plot %>%
+  style(textposition = 'inside')
+save_image(diet_ses_plot_print, "images/diet/diet_ses_plot.png", scale = 8, width = 800)
 
 ### Diet reasons - importance ranking
 
@@ -168,8 +178,8 @@ dietimp_plot <- plot_ly(data = dietimp_summary, x = ~percentage, y = ~factor,
                         type = 'bar', color = ~importance_rank,
                         colors = rev(colors_5),
                         orientation = 'h',
-                        text = ~text_label,
-                        textposition = 'inside',
+                        text = ~paste0(round(percentage, 1), "%"),
+                        textposition = 'none',
                         hoverinfo = 'text',
                         hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>Rank %{meta}<extra></extra>",
                         meta = ~importance_rank,
@@ -182,7 +192,9 @@ dietimp_plot <- plot_ly(data = dietimp_summary, x = ~percentage, y = ~factor,
          margin = list(l = 150),  # Adjust left margin to fit labels
          legend = list(title = list(text = 'Rank'), traceorder = 'normal')) %>%  # Adding a title to the legend
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(dietimp_plot, "images/diet/dietimp_plot.png", scale = 8, width = 800)
+dietimp_plot_print <- dietimp_plot %>%
+  style(textposition = 'inside')
+save_image(dietimp_plot_print, "images/diet/dietimp_plot.png", scale = 8, width = 800)
 
 ### Importance by diet
 
@@ -224,8 +236,10 @@ plot_for_diet <- function(diet_type, show_legend) {
 diet_plots <- map2(diet_prevalence, seq_along(diet_prevalence), ~plot_for_diet(.x, .y == 1))
 dietimp_groups_plot <- subplot(diet_plots, nrows = length(diet_plots), shareX = TRUE, shareY = FALSE, titleX = TRUE, titleY = TRUE) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(dietimp_groups_plot, "images/diet/dietimp_groups_plot.png", scale = 8, width = 1200, height = 800)
-dietimp_groups_plot
+dietimp_groups_plot_print <- dietimp_groups_plot %>%
+  style(textposition = 'inside')
+save_image(dietimp_groups_plot_print, "images/diet/dietimp_groups_plot.png", scale = 8, width = 1200, height = 800)
+
 
 ### Diet time
 
@@ -236,7 +250,7 @@ diet_time <- pbff %>%
 diet_time_plot <- plot_ly(diet_time, x = ~as_factor(diettime), y = ~percentage, type = "bar",
                           text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                           hoverinfo = 'text',  # Display text and x value on hover
-                          textposition = 'inside',
+                          textposition = 'none',
                           texttemplate = '%{text}',
                           insidetextfont = list(color = 'white'),
                           marker = list(color = colors_5, line = list(color = 'rgba(0,0,0,0)', width = 1))) %>%
@@ -245,7 +259,9 @@ diet_time_plot <- plot_ly(diet_time, x = ~as_factor(diettime), y = ~percentage, 
          barmode = 'stack',  # Stack bars to mimic histogram appearance
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(diet_time_plot, "images/diet/diet_time_plot.png", scale = 8, width = 800)
+diet_time_plot_print <- diet_time_plot %>%
+  style(textposition = 'inside')
+save_image(diet_time_plot_print, "images/diet/diet_time_plot.png", scale = 8, width = 800)
 
 ### Diet change - which diet did you switch from?
 
@@ -256,6 +272,7 @@ prev_diet <- pbff %>%
 
 prev_diet_plot <- plot_ly(prev_diet, x = ~as_factor(previousdiet), y = ~percentage, type = "bar",
                           text = ~paste0(round(percentage, 1), "%"),  # Display percentage on the bar
+                          textposition = 'none',
                           hovertext = ~paste(n, "<br>", round(percentage, 1), "%"),
                           hoverinfo = "text",  # Show custom hover text
                           marker = list(color = colors_5, line = list(color = 'white', width = 2))) %>%
@@ -263,7 +280,9 @@ prev_diet_plot <- plot_ly(prev_diet, x = ~as_factor(previousdiet), y = ~percenta
          yaxis = list(title = ""),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(prev_diet_plot, "images/diet/prev_diet_plot.png", scale = 8, width = 800)
+prev_diet_plot_print <- prev_diet_plot %>%
+  style(textposition = 'inside')
+save_image(prev_diet_plot_print, "images/diet/prev_diet_plot.png", scale = 8, width = 800)
 
 
 ### From omnivore - What was the main reason for the switch?
@@ -279,6 +298,7 @@ pdo_colors <- rep(colors_4, length.out = pdo_num_factors)
 
 reasonforswitch_from_omn_plot <- plot_ly(prev_diet_omn, x = ~as_factor(reasonforswitch), y = ~percentage, type = "bar",
                                          text = ~paste0(round(percentage, 1), "%"),  # Display percentage on the bar
+                                         textposition = 'none',
                                          hovertext = ~paste(n, "<br>", round(percentage, 1), "%"),
                                          hoverinfo = "text",  # Show custom hover text
                                          marker = list(color = pdo_colors, line = list(color = 'white', width = 2))) %>%
@@ -286,7 +306,9 @@ reasonforswitch_from_omn_plot <- plot_ly(prev_diet_omn, x = ~as_factor(reasonfor
          yaxis = list(title = ""),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(reasonforswitch_from_omn_plot, "images/diet/reasonforswitch_from_omn_plot.png", scale = 8, width = 800)
+reasonforswitch_from_omn_plot_print <- reasonforswitch_from_omn_plot %>%
+  style(textposition = 'inside')
+save_image(reasonforswitch_from_omn_plot_print, "images/diet/reasonforswitch_from_omn_plot.png", scale = 8, width = 800)
 
 ### Frequency of consumption
 
@@ -326,15 +348,16 @@ fc_data_agg <- fc_data_long %>%
 fc_plot <- plot_ly(fc_data_agg, x = ~percentage, y = ~variable,
                    type = 'bar', color = ~value_desc, colors = colors_7,
                    orientation = 'h',
-                   text = ~text_label,
+                   text = ~paste0(round(percentage, 1), "%"),
                    hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                    meta = ~value_desc,
-                   textposition = 'inside',
+                   textposition = 'none',
                    insidetextanchor = 'middle',
                    insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace")) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 fc_plot_print <- fc_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.225, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(fc_plot_print, "images/diet/fc_plot.png", scale = 8, width = 1200, height = 800)
@@ -415,7 +438,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -489,7 +512,7 @@ dm <- dm %>%
 deltameat_plot <- plot_ly(dm, x = ~as_factor(deltameat), y = ~percentage, type = "bar",
                           text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                           hoverinfo = 'text',  # Display text and x value on hover
-                          textposition = 'inside',
+                          textposition = 'none',
                           texttemplate = '%{text}',
                           insidetextfont = list(color = 'white'),
                           marker = list(color = colors_5, line = list(color = 'rgba(0,0,0,0)', width = 1))) %>%
@@ -498,7 +521,9 @@ deltameat_plot <- plot_ly(dm, x = ~as_factor(deltameat), y = ~percentage, type =
          barmode = 'stack',  # Stack bars to mimic histogram appearance
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(deltameat_plot, "images/diet/deltameat_plot.png", scale = 8, width = 800)
+deltameat_plot_print <- deltameat_plot %>%
+  style(textposition = 'inside')
+save_image(deltameat_plot_print, "images/diet/deltameat_plot.png", scale = 8, width = 800)
 
 ### Delta meat consumption by diet 
 
@@ -538,7 +563,7 @@ dm_diet_plot <- plot_ly(dm_diet_data, x = ~as_factor(deltameat), y = ~percentage
                          type = "bar", color = ~diet_group, colors = colors_2,
                          text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                          hoverinfo = 'text',  # Display text and x value on hover
-                         textposition = 'inside',
+                         textposition = 'none',
                          texttemplate = '%{text}',
                          insidetextfont = list(color = 'white')) %>%
   layout(barmode = 'group',  # Group bars side-by-side
@@ -546,7 +571,9 @@ dm_diet_plot <- plot_ly(dm_diet_data, x = ~as_factor(deltameat), y = ~percentage
          xaxis = list(title = ""),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(dm_diet_plot, "images/diet/dm_diet_plot.png", scale = 8, width = 800)
+dm_diet_plot_print <- dm_diet_plot %>%
+  style(textposition = 'inside')
+save_image(dm_diet_plot_print, "images/diet/dm_diet_plot.png", scale = 8, width = 800)
 
 
 ### Delta meat by country
@@ -594,7 +621,7 @@ dm_countries_plot <- plot_ly(dm_countries, x = ~percentage, y = ~Country,
                              hoverinfo = 'text',
                              hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                              meta = ~deltameat,
-                             textposition = 'inside',
+                             textposition = 'none',
                              texttemplate = '%{text}',
                              insidetextfont = list(color = 'white'),
                              insidetextanchor = 'middle',
@@ -606,6 +633,7 @@ dm_countries_plot <- plot_ly(dm_countries, x = ~percentage, y = ~Country,
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_countries_plot_print <- dm_countries_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.5, xanchor = 'auto', y = 1.13, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_countries_plot_print, "images/diet/dm_countries_plot.png", scale = 8, width = 800)
@@ -655,7 +683,7 @@ dm_edu_levels_plot <- plot_ly(dm_edu_levels, x = ~percentage, y = ~edu_desc,
                               hoverinfo = 'text',
                               hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                               meta = ~deltameat,
-                              textposition = 'inside',
+                              textposition = 'none',
                               texttemplate = '%{text}',
                               insidetextfont = list(color = 'white'),
                               insidetextanchor = 'middle',
@@ -667,6 +695,7 @@ dm_edu_levels_plot <- plot_ly(dm_edu_levels, x = ~percentage, y = ~edu_desc,
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_edu_levels_plot_print <- dm_edu_levels_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.5, xanchor = 'auto', y = 1.13, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_edu_levels_plot_print, "images/diet/dm_edu_levels_plot.png", scale = 8, width = 800)
@@ -717,7 +746,7 @@ dm_age_groups_plot <- plot_ly(dm_age_groups, x = ~percentage, y = ~age_groups_2,
                               hoverinfo = 'text',
                               hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                               meta = ~deltameat,
-                              textposition = 'inside',
+                              textposition = 'none',
                               texttemplate = '%{text}',
                               insidetextfont = list(color = 'white'),
                               insidetextanchor = 'middle',
@@ -729,6 +758,7 @@ dm_age_groups_plot <- plot_ly(dm_age_groups, x = ~percentage, y = ~age_groups_2,
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_age_groups_plot_print <- dm_age_groups_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.5, xanchor = 'auto', y = 1.13, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_age_groups_plot_print, "images/diet/dm_age_groups_plot.png", scale = 8, width = 800)
@@ -778,7 +808,7 @@ dm_ses_plot <- plot_ly(dm_ses_levels, x = ~percentage, y = ~ses_desc,
                        hoverinfo = 'text',
                        hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                        meta = ~deltameat,
-                       textposition = 'inside',
+                       textposition = 'none',
                        texttemplate = '%{text}',
                        insidetextfont = list(color = 'white'),
                        insidetextanchor = 'middle',
@@ -790,6 +820,7 @@ dm_ses_plot <- plot_ly(dm_ses_levels, x = ~percentage, y = ~ses_desc,
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_ses_plot_print <- dm_ses_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.5, xanchor = 'auto', y = 1.13, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_ses_plot_print, "images/diet/dm_ses_plot.png", scale = 8, width = 800)
@@ -820,7 +851,7 @@ dd_int <- dd_int %>%
 dd_int_plot <- plot_ly(dd_int, x = ~as_factor(deltadairy_int), y = ~percentage, type = "bar",
                                text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                                hoverinfo = 'text',  # Display text and x value on hover
-                               textposition = 'inside',
+                               textposition = 'none',
                                texttemplate = '%{text}',
                                insidetextfont = list(color = 'white'),
                                marker = list(color = rev(colors_5), line = list(color = 'rgba(0,0,0,0)', width = 1))) %>%
@@ -830,6 +861,7 @@ dd_int_plot <- plot_ly(dd_int, x = ~as_factor(deltadairy_int), y = ~percentage, 
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dd_int_plot_print <- dd_int_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.5, xanchor = 'auto', y = 1.13, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dd_int_plot_print, "images/diet/dd_int_plot.png", scale = 8, width = 800)
@@ -875,7 +907,7 @@ dd_int_diet_plot <- plot_ly(dd_int_diet_data, x = ~as_factor(deltadairy_int), y 
                             type = "bar", color = ~diet_group, colors = colors_2,
                             text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                             hoverinfo = 'text',  # Display text and x value on hover
-                            textposition = 'inside',
+                            textposition = 'none',
                             texttemplate = '%{text}',
                             insidetextfont = list(color = 'white')) %>%
   layout(barmode = 'group',  # Group bars side-by-side
@@ -883,8 +915,9 @@ dd_int_diet_plot <- plot_ly(dd_int_diet_data, x = ~as_factor(deltadairy_int), y 
          xaxis = list(title = ""),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-
-save_image(dd_int_diet_plot, "images/diet/dd_int_diet_plot.png", scale = 8, width = 800)
+dd_int_diet_plot_print <- dd_int_diet_plot %>%
+  style(textposition = 'inside')
+save_image(dd_int_diet_plot_print, "images/diet/dd_int_diet_plot.png", scale = 8, width = 800)
 
 
 ### Delta dairy int by country
@@ -932,7 +965,7 @@ dd_int_countries_plot <- plot_ly(dd_int_countries, x = ~percentage, y = ~Country
                                  hoverinfo = 'text',
                                  hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                                  meta = ~dd_int,
-                                 textposition = 'inside',
+                                 textposition = 'none',
                                  texttemplate = '%{text}',
                                  insidetextfont = list(color = 'white'),
                                  insidetextanchor = 'middle',
@@ -944,6 +977,7 @@ dd_int_countries_plot <- plot_ly(dd_int_countries, x = ~percentage, y = ~Country
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dd_int_countries_plot_print <- dd_int_countries_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.05, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dd_int_countries_plot_print, "images/diet/dd_int_countries_plot.png", scale = 8, width = 800)
@@ -995,7 +1029,7 @@ dd_int_age_groups_plot <- plot_ly(dd_int_age_groups, x = ~percentage, y = ~age_g
                                   hoverinfo = 'text',
                                   hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                                   meta = ~dd_int,
-                                  textposition = 'inside',
+                                  textposition = 'none',
                                   texttemplate = '%{text}',
                                   insidetextfont = list(color = 'white'),
                                   insidetextanchor = 'middle',
@@ -1007,6 +1041,7 @@ dd_int_age_groups_plot <- plot_ly(dd_int_age_groups, x = ~percentage, y = ~age_g
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dd_int_age_groups_plot_print <- dd_int_age_groups_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.005, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dd_int_age_groups_plot_print, "images/diet/dd_int_age_groups_plot.png", scale = 8, width = 800)
@@ -1056,7 +1091,7 @@ dd_int_edu_levels_plot <- plot_ly(dd_int_edu_levels, x = ~percentage, y = ~edu_d
                                   hoverinfo = 'text',
                                   hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                                   meta = ~dd_int,
-                                  textposition = 'inside',
+                                  textposition = 'none',
                                   texttemplate = '%{text}',
                                   insidetextfont = list(color = 'white'),
                                   insidetextanchor = 'middle',
@@ -1068,6 +1103,7 @@ dd_int_edu_levels_plot <- plot_ly(dd_int_edu_levels, x = ~percentage, y = ~edu_d
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dd_int_edu_levels_plot_print <- dd_int_edu_levels_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.15, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dd_int_edu_levels_plot_print, "images/diet/dd_int_edu_levels_plot.png", scale = 8, width = 800)
@@ -1117,7 +1153,7 @@ dd_int_ses_plot <- plot_ly(dd_int_ses_levels, x = ~percentage, y = ~ses_desc,
                            hoverinfo = 'text',
                            hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                            meta = ~dd_int,
-                           textposition = 'inside',
+                           textposition = 'none',
                            texttemplate = '%{text}',
                            insidetextfont = list(color = 'white'),
                            insidetextanchor = 'middle',
@@ -1129,6 +1165,7 @@ dd_int_ses_plot <- plot_ly(dd_int_ses_levels, x = ~percentage, y = ~ses_desc,
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dd_int_ses_plot_print <- dd_int_ses_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.2, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dd_int_ses_plot_print, "images/diet/dd_int_ses_plot.png", scale = 8, width = 800)
@@ -1159,7 +1196,7 @@ dm_int <- dm_int %>%
 dm_int_plot <- plot_ly(dm_int, x = ~as_factor(deltameat_int), y = ~percentage, type = "bar",
                        text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                        hoverinfo = 'text',  # Display text and x value on hover
-                       textposition = 'inside',
+                       textposition = 'none',
                        texttemplate = '%{text}',
                        insidetextfont = list(color = 'white'),
                        marker = list(color = rev(colors_5), line = list(color = 'rgba(0,0,0,0)', width = 1))) %>%
@@ -1169,6 +1206,7 @@ dm_int_plot <- plot_ly(dm_int, x = ~as_factor(deltameat_int), y = ~percentage, t
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_int_plot_print <- dm_int_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.5, xanchor = 'auto', y = 1.13, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_int_plot_print, "images/diet/dm_int_plot.png", scale = 8, width = 800)
@@ -1215,7 +1253,7 @@ dm_int_diet_plot <- plot_ly(dm_int_diet_data, x = ~as_factor(deltameat_int), y =
                          type = "bar", color = ~diet_group, colors = colors_2,
                          text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                          hoverinfo = 'text',  # Display text and x value on hover
-                         textposition = 'inside',
+                         textposition = 'none',
                          texttemplate = '%{text}',
                          insidetextfont = list(color = 'white')) %>%
   layout(barmode = 'group',  # Group bars side-by-side
@@ -1223,8 +1261,9 @@ dm_int_diet_plot <- plot_ly(dm_int_diet_data, x = ~as_factor(deltameat_int), y =
          xaxis = list(title = ""),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-
-save_image(dm_int_diet_plot, "images/diet/dm_int_diet_plot.png", scale = 8, width = 800)
+dm_int_diet_plot_print <- dm_int_diet_plot %>%
+  style(textposition = 'inside')
+save_image(dm_int_diet_plot_print, "images/diet/dm_int_diet_plot.png", scale = 8, width = 800)
 
 
 ### Delta meat int by country
@@ -1272,7 +1311,7 @@ dm_int_countries_plot <- plot_ly(dm_int_countries, x = ~percentage, y = ~Country
                                  hoverinfo = 'text',
                                  hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                                  meta = ~dm_int,
-                                 textposition = 'inside',
+                                 textposition = 'none',
                                  texttemplate = '%{text}',
                                  insidetextfont = list(color = 'white'),
                                  insidetextanchor = 'middle',
@@ -1284,6 +1323,7 @@ dm_int_countries_plot <- plot_ly(dm_int_countries, x = ~percentage, y = ~Country
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_int_countries_plot_print <- dm_int_countries_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.05, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_int_countries_plot_print, "images/diet/dm_int_countries_plot.png", scale = 8, width = 800)
@@ -1335,7 +1375,7 @@ dm_int_age_groups_plot <- plot_ly(dm_int_age_groups, x = ~percentage, y = ~age_g
                                   hoverinfo = 'text',
                                   hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                                   meta = ~dm_int,
-                                  textposition = 'inside',
+                                  textposition = 'none',
                                   texttemplate = '%{text}',
                                   insidetextfont = list(color = 'white'),
                                   insidetextanchor = 'middle',
@@ -1347,6 +1387,7 @@ dm_int_age_groups_plot <- plot_ly(dm_int_age_groups, x = ~percentage, y = ~age_g
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_int_age_groups_plot_print <- dm_int_age_groups_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.005, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_int_age_groups_plot_print, "images/diet/dm_int_age_groups_plot.png", scale = 8, width = 800)
@@ -1396,7 +1437,7 @@ dm_int_edu_levels_plot <- plot_ly(dm_int_edu_levels, x = ~percentage, y = ~edu_d
                                   hoverinfo = 'text',
                                   hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                                   meta = ~dm_int,
-                                  textposition = 'inside',
+                                  textposition = 'none',
                                   texttemplate = '%{text}',
                                   insidetextfont = list(color = 'white'),
                                   insidetextanchor = 'middle',
@@ -1408,6 +1449,7 @@ dm_int_edu_levels_plot <- plot_ly(dm_int_edu_levels, x = ~percentage, y = ~edu_d
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_int_edu_levels_plot_print <- dm_int_edu_levels_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.15, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_int_edu_levels_plot_print, "images/diet/dm_int_edu_levels_plot.png", scale = 8, width = 800)
@@ -1457,7 +1499,7 @@ dm_int_ses_plot <- plot_ly(dm_int_ses_levels, x = ~percentage, y = ~ses_desc,
                            hoverinfo = 'text',
                            hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                            meta = ~dm_int,
-                           textposition = 'inside',
+                           textposition = 'none',
                            texttemplate = '%{text}',
                            insidetextfont = list(color = 'white'),
                            insidetextanchor = 'middle',
@@ -1469,6 +1511,7 @@ dm_int_ses_plot <- plot_ly(dm_int_ses_levels, x = ~percentage, y = ~ses_desc,
          legend = list(traceorder = 'normal')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 dm_int_ses_plot_print <- dm_int_ses_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.2, xanchor = 'auto', y = 1.19, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(dm_int_ses_plot_print, "images/diet/dm_int_ses_plot.png", scale = 8, width = 800)
@@ -1519,15 +1562,16 @@ fc1_data_agg <- fc1_data_long %>%
 fc1_plot <- plot_ly(fc1_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_9_alt,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace")) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 fc1_plot_print <- fc1_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.6, xanchor = 'auto', y = 1.35, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(fc1_plot_print, "images/diet/fc1_plot.png", scale = 8, width = 800)
@@ -1614,7 +1658,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',

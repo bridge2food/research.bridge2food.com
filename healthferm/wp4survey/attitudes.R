@@ -38,11 +38,11 @@ fcm_data_agg <- fcm_data_long %>%
 fcm_plot <- plot_ly(fcm_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_7,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hoverinfo = 'text',
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4),
@@ -51,6 +51,7 @@ fcm_plot <- plot_ly(fcm_data_agg, x = ~percentage, y = ~variable,
          yaxis = list(title = "", categoryorder = "trace")) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 fcm_plot_print <- fcm_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.2, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(fcm_plot_print, "images/attitudes/fcm_plot.png", scale = 8, width = 1200, height = 800)
@@ -123,7 +124,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -212,16 +213,17 @@ values_data_agg <- values_data_long %>%
 values_plot <- plot_ly(values_data_agg, x = ~percentage, y = ~variable,
                        type = 'bar', color = ~value_desc, colors = colors_9_alt,
                        orientation = 'h',
-                       text = ~text_label,
+                       text = ~paste0(round(percentage, 1), "%"),
                        hoverinfo = 'text',
                        hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                        meta = ~value_desc,
-                       textposition = 'inside',
+                       textposition = 'none',
                        insidetextanchor = 'middle',
                        insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace")) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 values_plot_print <- values_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(values_plot_print, "images/attitudes/values_plot.png", scale = 8, width = 1200, height = 800)
@@ -302,7 +304,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -397,16 +399,17 @@ att_data_agg <- att_data_long %>%
 att_pbf_plot <- plot_ly(att_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_7,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hoverinfo = 'text',
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace")) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att_pbf_plot_print <- att_pbf_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.215, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att_pbf_plot_print, "images/attitudes/att_pbf_plot.png", scale = 8, width = 1200, height = 800)
@@ -484,7 +487,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -576,16 +579,17 @@ att0_data_agg <- att0_data_long %>%
 att_pbff_plot <- plot_ly(att0_data_agg, x = ~percentage, y = ~variable,
                          type = 'bar', color = ~value_desc, colors = colors_7,
                          orientation = 'h',
-                         text = ~text_label,
+                         text = ~paste0(round(percentage, 1), "%"),
                          hoverinfo = 'text',
                          hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                          meta = ~value_desc,
-                         textposition = 'inside',
+                         textposition = 'none',
                          insidetextanchor = 'middle',
                          insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace")) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att_pbff_plot_print <- att_pbff_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.4, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att_pbff_plot_print, "images/attitudes/att_pbff_plot.png", scale = 8, width = 1200, height = 800)
@@ -661,7 +665,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -756,16 +760,18 @@ wtpatt_data_agg <- wtpatt_data_long %>%
 wtt_plot <- plot_ly(wtpatt_data_agg, x = ~variable, y = ~percentage,
                          type = 'bar', color = ~value_desc, colors = colors_7,
                          orientation = 'v',
-                         text = ~text_label,
+                         text = ~paste0(round(percentage, 1), "%"),
                          hoverinfo = 'text',
                          hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                          meta = ~value_desc,
-                         textposition = 'inside',
+                         textposition = 'none',
                          insidetextanchor = 'middle',
                          insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(wtt_plot, "images/attitudes/wtt_plot.png", scale = 8)
+wtt_plot_print <- wtt_plot %>%
+  style(textposition = 'inside')
+save_image(wtt_plot_print, "images/attitudes/wtt_plot.png", scale = 8)
 
 
 ### WTT by diet (tech)
@@ -810,11 +816,13 @@ wtt_diet_plot <- plot_ly(wtt_mean_diet, x = ~mean_value, y = ~as_factor(diet),
                          hoverinfo = 'text',
                          hovertemplate = "<b>%{y}</b><br>%{meta}<br>%{x:.1f}<extra></extra>",
                          meta = ~variable,
-                         textposition = 'inside',
+                         textposition = 'none',
                          insidetextfont = list(color = 'white')) %>%
   layout(xaxis = list(title = "Mean Value, 7-Point Scale"), yaxis = list(title = ""), barmode = 'group', margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(wtt_diet_plot, "images/attitudes/wtt_diet_plot.png", scale = 8)
+wtt_diet_plot_print <- wtt_diet_plot %>%
+  style(textposition = 'inside')
+save_image(wtt_diet_plot_print, "images/attitudes/wtt_diet_plot.png", scale = 8)
 
 
 ### WTT by country (tech)
@@ -870,11 +878,13 @@ wtt_countries_plot <- plot_ly(wtt_mean_countries, x = ~mean_value, y = ~as_facto
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{y}</b><br>%{meta}<br>%{x:.1f}<extra></extra>",
                      meta = ~variable,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextfont = list(color = 'white')) %>%
   layout(xaxis = list(title = "Mean Value, 7-Point Scale"), yaxis = list(title = "", categoryorder = 'trace'), barmode = 'group', margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(wtt_countries_plot, "images/attitudes/wtt_countries_plot.png", scale = 8)
+wtt_countries_plot_print <- wtt_countries_plot %>%
+  style(textposition = 'inside')
+save_image(wtt_countries_plot_print, "images/attitudes/wtt_countries_plot.png", scale = 8)
 
 ### WTT by age (tech)
 
@@ -918,11 +928,13 @@ wtt_age_plot <- plot_ly(wtt_mean_age, x = ~mean_value, y = ~as_factor(age_groups
                         hoverinfo = 'text',
                         hovertemplate = "<b>%{y}</b><br>%{meta}<br>%{x:.1f}<extra></extra>",
                         meta = ~variable,
-                        textposition = 'inside',
+                        textposition = 'none',
                         insidetextfont = list(color = 'white')) %>%
   layout(xaxis = list(title = "Mean Value, 7-Point Scale"), yaxis = list(title = ""), barmode = 'group', margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(wtt_age_plot, "images/attitudes/wtt_age_plot.png", scale = 8)
+wtt_age_plot_print <- wtt_age_plot %>%
+  style(textposition = 'inside')
+save_image(wtt_age_plot_print, "images/attitudes/wtt_age_plot.png", scale = 8)
 
 
 ### WTT by education level (tech)
@@ -967,11 +979,13 @@ wtt_edu_plot <- plot_ly(wtt_mean_edu, x = ~mean_value, y = ~as_factor(edu_desc),
                         hoverinfo = 'text',
                         hovertemplate = "<b>%{y}</b><br>%{meta}<br>%{x:.1f}<extra></extra>",
                         meta = ~variable,
-                        textposition = 'inside',
+                        textposition = 'none',
                         insidetextfont = list(color = 'white')) %>%
   layout(xaxis = list(title = "Mean Value, 7-Point Scale"), yaxis = list(title = ""), barmode = 'group', margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(wtt_edu_plot, "images/attitudes/wtt_edu_plot.png", scale = 8)
+wtt_edu_plot_print <- wtt_edu_plot %>%
+  style(textposition = 'inside')
+save_image(wtt_edu_plot_print, "images/attitudes/wtt_edu_plot.png", scale = 8)
 
 ### WTT by ses (tech)
 
@@ -1015,11 +1029,13 @@ wtt_ses_plot <- plot_ly(wtt_mean_ses, x = ~mean_value, y = ~as_factor(ses_desc),
                         hoverinfo = 'text',
                         hovertemplate = "<b>%{y}</b><br>%{meta}<br>%{x:.1f}<extra></extra>",
                         meta = ~variable,
-                        textposition = 'inside',
+                        textposition = 'none',
                         insidetextfont = list(color = 'white')) %>%
   layout(xaxis = list(title = "Mean Value, 7-Point Scale"), yaxis = list(title = ""), barmode = 'group', margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(wtt_ses_plot, "images/attitudes/wtt_ses_plot.png", scale = 8)
+wtt_ses_plot_print <- wtt_ses_plot %>%
+  style(textposition = 'inside')
+save_image(wtt_ses_plot_print, "images/attitudes/wtt_ses_plot.png", scale = 8)
 
 
 ### Familiarity with raw materials
@@ -1064,16 +1080,17 @@ att1_data_agg <- att1_data_long %>%
 att1_plot <- plot_ly(att1_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_4,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hoverinfo = 'text',
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att1_plot_print <- att1_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.025, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att1_plot_print, "images/attitudes/att1_plot.png", scale = 8, width = 1200, height = 800)
@@ -1135,11 +1152,11 @@ for (country in unique_countries) {
   plot <- plot_ly(country_data, x = ~percentage, y = ~variable,
                   type = 'bar', color = ~value_desc, colors = colors_4,
                   orientation = 'h',
-                  text = ~text_label,
+                  text = ~paste0(round(percentage, 1), "%"),
                   hoverinfo = 'text',
                   hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                   meta = ~value_desc,
-                  textposition = 'inside',
+                  textposition = 'none',
                   insidetextanchor = 'middle',
                   insidetextfont = list(color = 'white')) %>%
     layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
@@ -1223,7 +1240,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -1316,16 +1333,17 @@ att2_data_agg <- att2_data_long %>%
 att2_plot <- plot_ly(att2_data_agg, x = ~percentage, y = ~variable,
                      type = 'bar', color = ~value_desc, colors = colors_7,
                      orientation = 'h',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att2_plot_print <- att2_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.325, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att2_plot_print, "images/attitudes/att2_plot.png", scale = 8, width = 1200, height = 800)
@@ -1402,7 +1420,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -1496,16 +1514,17 @@ att4_data_agg <- att4_data_long %>%
 att4_plot <- plot_ly(att4_data_agg, x = ~percentage, y = ~variable,
                      type = 'bar', color = ~value_desc, colors = colors_7,
                      orientation = 'h',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att4_plot_print <- att4_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.1, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att4_plot_print, "images/attitudes/att4_plot.png", scale = 8, width = 1200, height = 800)
@@ -1582,7 +1601,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -1676,16 +1695,17 @@ att5_data_agg <- att5_data_long %>%
 att5_plot <- plot_ly(att5_data_agg, x = ~percentage, y = ~variable,
                      type = 'bar', color = ~value_desc, colors = colors_7,
                      orientation = 'h',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att5_plot_print <- att5_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.1, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att5_plot_print, "images/attitudes/att5_plot.png", scale = 8, width = 1200, height = 800)
@@ -1762,7 +1782,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -1856,16 +1876,17 @@ att6_data_agg <- att6_data_long %>%
 att6_plot <- plot_ly(att6_data_agg, x = ~percentage, y = ~variable,
                      type = 'bar', color = ~value_desc, colors = colors_7,
                      orientation = 'h',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att6_plot_print <- att6_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.1, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att6_plot_print, "images/attitudes/att6_plot.png", scale = 8, width = 1200, height = 800)
@@ -1942,7 +1963,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -2036,16 +2057,17 @@ att7_data_agg <- att7_data_long %>%
 att7_plot <- plot_ly(att7_data_agg, x = ~percentage, y = ~variable,
                      type = 'bar', color = ~value_desc, colors = colors_7,
                      orientation = 'h',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 att7_plot_print <- att7_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.1, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(att7_plot_print, "images/attitudes/att7_plot.png", scale = 8, width = 1200, height = 800)
@@ -2122,7 +2144,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -2216,16 +2238,17 @@ tru_data_agg <- tru_data_long %>%
 tru_plot <- plot_ly(tru_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_7,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hoverinfo = 'text',
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 tru_plot_print <- tru_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.2, xanchor = 'auto', y = 1.1, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(tru_plot_print, "images/attitudes/tru_plot.png", scale = 8, width = 1200, height = 800)
@@ -2303,7 +2326,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -2396,16 +2419,17 @@ barriers_data_agg <- barriers_data_long %>%
 barriers_plot <- plot_ly(barriers_data_agg, x = ~percentage, y = ~variable,
                          type = 'bar', color = ~value_desc, colors = colors_7,
                          orientation = 'h',
-                         text = ~text_label,
+                         text = ~paste0(round(percentage, 1), "%"),
                          hoverinfo = 'text',
                          hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                          meta = ~value_desc,
-                         textposition = 'inside',
+                         textposition = 'none',
                          insidetextanchor = 'middle',
                          insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 barriers_plot_print <- barriers_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.375, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(barriers_plot_print, "images/attitudes/barriers_plot.png", scale = 8, width = 1200, height = 1000)
@@ -2482,7 +2506,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -2577,16 +2601,17 @@ q36_data_agg <- q36_data_long %>%
 q36_plot <- plot_ly(q36_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_7,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hoverinfo = 'text',
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 q36_plot_print <- q36_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.25, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(q36_plot_print, "images/attitudes/q36_plot.png", scale = 8, width = 1200, height = 800)
@@ -2663,7 +2688,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -2757,16 +2782,17 @@ q38_data_agg <- q38_data_long %>%
 q38_plot <- plot_ly(q38_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_7,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hoverinfo = 'text',
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 q38_plot_print <- q38_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = 0.085, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(q38_plot_print, "images/attitudes/q38_plot.png", scale = 8, width = 1200, height = 800)
@@ -2844,7 +2870,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -2934,19 +2960,19 @@ q39_1_data_agg <- q39_1_data_long %>%
   arrange(desc(value), desc(percentage))
 
 # Plot
-q39_1_plot <- plot_ly(q39_1_data_agg, x = ~percentage, y = ~variable,
-                      type = 'bar', color = ~value_desc, colors = rev(colors_2),
-                      orientation = 'h',
-                      text = ~text_label,
-                      hoverinfo = 'text',
-                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
-                      meta = ~value_desc,
-                      textposition = 'inside',
-                      insidetextanchor = 'middle',
-                      insidetextfont = list(color = 'white')) %>%
-  layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
-  config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q39_1_plot, "images/attitudes/q39_1_plot.png", scale = 8)
+# q39_1_plot <- plot_ly(q39_1_data_agg, x = ~percentage, y = ~variable,
+#                       type = 'bar', color = ~value_desc, colors = rev(colors_2),
+#                       orientation = 'h',
+#                       text = ~paste0(round(percentage, 1), "%"),
+#                       hoverinfo = 'text',
+#                       hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+#                       meta = ~value_desc,
+#                       textposition = 'none',
+#                       insidetextanchor = 'middle',
+#                       insidetextfont = list(color = 'white')) %>%
+#   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
+#   config(displayModeBar = FALSE, displaylogo = FALSE)
+# save_image(q39_1_plot_print, "images/attitudes/q39_1_plot.png", scale = 8)
 
 
 #### Yogurt
@@ -2985,19 +3011,19 @@ q39_2_data_agg <- q39_2_data_long %>%
   arrange(desc(value), desc(percentage))
 
 # Plot
-q39_2_plot <- plot_ly(q39_2_data_agg, x = ~percentage, y = ~variable,
-                      type = 'bar', color = ~value_desc, colors = rev(colors_2),
-                      orientation = 'h',
-                      text = ~text_label,
-                      hoverinfo = 'text',
-                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
-                      meta = ~value_desc,
-                      textposition = 'inside',
-                      insidetextanchor = 'middle',
-                      insidetextfont = list(color = 'white')) %>%
-  layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
-  config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q39_2_plot, "images/attitudes/q39_2_plot.png", scale = 8)
+# q39_2_plot <- plot_ly(q39_2_data_agg, x = ~percentage, y = ~variable,
+#                       type = 'bar', color = ~value_desc, colors = rev(colors_2),
+#                       orientation = 'h',
+#                       text = ~paste0(round(percentage, 1), "%"),
+#                       hoverinfo = 'text',
+#                       hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+#                       meta = ~value_desc,
+#                       textposition = 'none',
+#                       insidetextanchor = 'middle',
+#                       insidetextfont = list(color = 'white')) %>%
+#   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
+#   config(displayModeBar = FALSE, displaylogo = FALSE)
+# save_image(q39_2_plot, "images/attitudes/q39_2_plot.png", scale = 8)
 
 #### Milk
 
@@ -3035,19 +3061,19 @@ q39_3_data_agg <- q39_3_data_long %>%
   arrange(desc(value), desc(percentage))
 
 # Plot
-q39_3_plot <- plot_ly(q39_3_data_agg, x = ~percentage, y = ~variable,
-                      type = 'bar', color = ~value_desc, colors = rev(colors_2),
-                      orientation = 'h',
-                      text = ~text_label,
-                      hoverinfo = 'text',
-                      hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
-                      meta = ~value_desc,
-                      textposition = 'inside',
-                      insidetextanchor = 'middle',
-                      insidetextfont = list(color = 'white')) %>%
-  layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
-  config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q39_3_plot, "images/attitudes/q39_3_plot.png", scale = 8)
+# q39_3_plot <- plot_ly(q39_3_data_agg, x = ~percentage, y = ~variable,
+#                       type = 'bar', color = ~value_desc, colors = rev(colors_2),
+#                       orientation = 'h',
+#                       text = ~paste0(round(percentage, 1), "%"),
+#                       hoverinfo = 'text',
+#                       hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
+#                       meta = ~value_desc,
+#                       textposition = 'none',
+#                       insidetextanchor = 'middle',
+#                       insidetextfont = list(color = 'white')) %>%
+#   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "Percentage"), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
+#   config(displayModeBar = FALSE, displaylogo = FALSE)
+# save_image(q39_3_plot, "images/attitudes/q39_3_plot.png", scale = 8)
 
 ### Price conditions combined plot
 
@@ -3069,15 +3095,17 @@ price_cond_plot <- plot_ly(data = price_cond_combined_data, x = ~variable, y = ~
                 hoverinfo = 'text',
                 hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                 meta = ~value_desc,
-                text = ~text_label,
-                textposition = 'inside',
+                text = ~paste0(round(percentage, 1), "%"),
+                textposition = 'none',
                 insidetextanchor = 'middle',
                 insidetextfont = list(color = 'white')) %>%
   layout(yaxis = list(title = ""), xaxis = list(title = ""),
          barmode = 'group', margin = list(pad=4),
          legend = list(traceorder = 'reversed')) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(price_cond_plot, "images/attitudes/price_cond_plot.png", scale = 8)
+price_cond_plot_print <- price_cond_plot %>%
+  style(textposition = 'inside')
+save_image(price_cond_plot_print, "images/attitudes/price_cond_plot.png", scale = 8)
 
 
 #### By Country (Dropdown menu)
@@ -3215,7 +3243,7 @@ for (i in seq_along(countries)) {
       name = as.character(category),
       marker = list(color = rev(colors_3)[match(category, unique(price_cond_combined_data_dd$category))]),
       text = category_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',
@@ -3310,16 +3338,17 @@ q41_data_agg <- q41_data_long %>%
 q41_plot <- plot_ly(q41_data_agg, x = ~percentage, y = ~variable,
                     type = 'bar', color = ~value_desc, colors = colors_7,
                     orientation = 'h',
-                    text = ~text_label,
+                    text = ~paste0(round(percentage, 1), "%"),
                     hoverinfo = 'text',
                     hovertemplate = "<b>%{y}</b><br>%{x:.1f}%<br>%{meta}<extra></extra>",
                     meta = ~value_desc,
-                    textposition = 'inside',
+                    textposition = 'none',
                     insidetextanchor = 'middle',
                     insidetextfont = list(color = 'white')) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = ""), yaxis = list(title = "", categoryorder = "trace"), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
 q41_plot_print <- q41_plot %>%
+  style(textposition = 'inside') %>%
   layout(margin = list(t=100),
          legend = list(orientation = 'h', x = -0.375, xanchor = 'auto', y = 1.075, yanchor='top', xref = 'paper', yref = 'container', entrywidth = 1, entrywidthmode = 'fraction', traceorder = 'normal'))
 save_image(q41_plot_print, "images/attitudes/q41_plot.png", scale = 8, width = 1200, height = 800)
@@ -3397,7 +3426,7 @@ for (i in seq_along(countries)) {
       name = as.character(value_desc),
       marker = list(color = color),
       text = value_data$text_label,
-      textposition = 'inside',
+      textposition = 'none',
       insidetextanchor = 'middle',
       insidetextfont = list(color = 'white'),
       hoverinfo = 'text',

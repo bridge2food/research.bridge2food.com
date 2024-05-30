@@ -40,11 +40,11 @@ q33a_data_agg <- q33a_data_long %>%
 q33a_plot <- plot_ly(q33a_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar',
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_7)) %>%
@@ -53,7 +53,9 @@ q33a_plot <- plot_ly(q33a_data_agg, x = ~variable, y = ~percentage,
          yaxis = list(title = ""),
          margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q33a_plot, "images/organoleptics/q33a_plot.png", scale = 8)
+q33a_plot_print <- q33a_plot %>%
+  style(textposition = 'inside')
+save_image(q33a_plot_print, "images/sensory/q33a_plot.png", scale = 8)
 
 #### Odour
 
@@ -94,17 +96,19 @@ q33b_data_agg <- q33b_data_long %>%
 q33b_plot <- plot_ly(q33b_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar',
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_7)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q33b_plot, "images/organoleptics/q33b_plot.png", scale = 8)
+q33b_plot_print <- q33b_plot %>%
+  style(textposition = 'inside')
+save_image(q33b_plot_print, "images/sensory/q33b_plot.png", scale = 8)
 
 #### Taste/Flavour
 
@@ -145,17 +149,19 @@ q33c_data_agg <- q33c_data_long %>%
 q33c_plot <- plot_ly(q33c_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_8)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q33c_plot, "images/organoleptics/q33c_plot.png", scale = 8)
+q33c_plot_print <- q33c_plot %>%
+  style(textposition = 'inside')
+save_image(q33c_plot_print, "images/sensory/q33c_plot.png", scale = 8)
 
 
 #### Texture/Mouthfeel
@@ -197,17 +203,19 @@ q33d_data_agg <- q33d_data_long %>%
 q33d_plot <- plot_ly(q33d_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_8)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q33d_plot, "images/organoleptics/q33d_plot.png", scale = 8)
+q33d_plot_print <- q33d_plot %>%
+  style(textposition = 'inside')
+save_image(q33d_plot_print, "images/sensory/q33d_plot.png", scale = 8)
 
 ### Yogurt
 
@@ -250,17 +258,19 @@ q34a_data_agg <- q34a_data_long %>%
 q34a_plot <- plot_ly(q34a_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_10)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q34a_plot, "images/organoleptics/q34a_plot.png", scale = 8)
+q34a_plot_print <- q34a_plot %>%
+  style(textposition = 'inside')
+save_image(q34a_plot_print, "images/sensory/q34a_plot.png", scale = 8)
 
 
 #### Odour
@@ -302,17 +312,19 @@ q34b_data_agg <- q34b_data_long %>%
 q34b_plot <- plot_ly(q34b_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_5)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q34b_plot, "images/organoleptics/q34b_plot.png", scale = 8)
+q34b_plot_print <- q34b_plot %>%
+  style(textposition = 'inside')
+save_image(q34b_plot_print, "images/sensory/q34b_plot.png", scale = 8)
 
 
 #### Taste/Flavour
@@ -354,17 +366,19 @@ q34c_data_agg <- q34c_data_long %>%
 q34c_plot <- plot_ly(q34c_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_9)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q34c_plot, "images/organoleptics/q34c_plot.png", scale = 8)
+q34c_plot_print <- q34c_plot %>%
+  style(textposition = 'inside')
+save_image(q34c_plot_print, "images/sensory/q34c_plot.png", scale = 8)
 
 
 #### Texture/Mouthfeel
@@ -406,17 +420,19 @@ q34d_data_agg <- q34d_data_long %>%
 q34d_plot <- plot_ly(q34d_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_10)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q34d_plot, "images/organoleptics/q34d_plot.png", scale = 8)
+q34d_plot_print <- q34d_plot %>%
+  style(textposition = 'inside')
+save_image(q34d_plot_print, "images/sensory/q34d_plot.png", scale = 8)
 
 ### Chicken
 
@@ -459,17 +475,19 @@ q35a_data_agg <- q35a_data_long %>%
 q35a_plot <- plot_ly(q35a_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_9)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q35a_plot, "images/organoleptics/q35a_plot.png", scale = 8)
+q35a_plot_print <- q35a_plot %>%
+  style(textposition = 'inside')
+save_image(q35a_plot_print, "images/sensory/q35a_plot.png", scale = 8)
 
 
 #### Odour
@@ -511,17 +529,19 @@ q35b_data_agg <- q35b_data_long %>%
 q35b_plot <- plot_ly(q35b_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_7)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q35b_plot, "images/organoleptics/q35b_plot.png", scale = 8)
+q35b_plot_print <- q35b_plot %>%
+  style(textposition = 'inside')
+save_image(q35b_plot_print, "images/sensory/q35b_plot.png", scale = 8)
 
 #### Taste/Flavour
 
@@ -562,17 +582,19 @@ q35c_data_agg <- q35c_data_long %>%
 q35c_plot <- plot_ly(q35c_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_15)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q35c_plot, "images/organoleptics/q35c_plot.png", scale = 8)
+q35c_plot_print <- q35c_plot %>%
+  style(textposition = 'inside')
+save_image(q35c_plot_print, "images/sensory/q35c_plot.png", scale = 8)
 
 #### Texture/Mouthfeel
 
@@ -613,17 +635,19 @@ q35d_data_agg <- q35d_data_long %>%
 q35d_plot <- plot_ly(q35d_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_11)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q35d_plot, "images/organoleptics/q35d_plot.png", scale = 8)
+q35d_plot_print <- q35a_plot %>%
+  style(textposition = 'inside')
+save_image(q35d_plot_print, "images/sensory/q35d_plot.png", scale = 8)
 
 ### Protein-Enriched Bread
 
@@ -666,17 +690,19 @@ q36a_data_agg <- q36a_data_long %>%
 q36a_plot <- plot_ly(q36a_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_5)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q36a_plot, "images/organoleptics/q36a_plot.png", scale = 8)
+q36a_plot_print <- q36a_plot %>%
+  style(textposition = 'inside')
+save_image(q36a_plot_print, "images/sensory/q36a_plot.png", scale = 8)
 
 #### Odour
 
@@ -717,17 +743,19 @@ q36b_data_agg <- q36b_data_long %>%
 q36b_plot <- plot_ly(q36b_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_5)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q36b_plot, "images/organoleptics/q36b_plot.png", scale = 8)
+q36b_plot_print <- q36b_plot %>%
+  style(textposition = 'inside')
+save_image(q36b_plot_print, "images/sensory/q36b_plot.png", scale = 8)
 
 #### Taste/Flavour
 
@@ -768,17 +796,19 @@ q36c_data_agg <- q36c_data_long %>%
 q36c_plot <- plot_ly(q36c_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_14)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q36c_plot, "images/organoleptics/q36c_plot.png", scale = 8)
+q36c_plot_print <- q36c_plot %>%
+  style(textposition = 'inside')
+save_image(q36c_plot_print, "images/sensory/q36c_plot.png", scale = 8)
 
 #### Texture/Mouthfeel
 
@@ -819,14 +849,16 @@ q36d_data_agg <- q36d_data_long %>%
 q36d_plot <- plot_ly(q36d_data_agg, x = ~variable, y = ~percentage,
                      type = 'bar', 
                      orientation = 'v',
-                     text = ~text_label,
+                     text = ~paste0(round(percentage, 1), "%"),
                      hoverinfo = 'text',
                      hovertemplate = "<b>%{x}</b><br>%{y:.1f}%<br>%{meta}<extra></extra>",
                      meta = ~value_desc,
-                     textposition = 'inside',
+                     textposition = 'none',
                      insidetextanchor = 'middle',
                      insidetextfont = list(color = 'white'),
                      marker = list(color = colors_8)) %>%
   layout(margin = list(pad=4), barmode = 'stack', xaxis = list(title = "", categoryorder = "trace"), yaxis = list(title = ""), margin = list(pad=4)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(q36d_plot, "images/organoleptics/q36d_plot.png", scale = 8)
+q36d_plot_print <- q36d_plot %>%
+  style(textposition = 'inside')
+save_image(q36d_plot_print, "images/sensory/q36d_plot.png", scale = 8)

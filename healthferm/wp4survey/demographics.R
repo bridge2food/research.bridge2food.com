@@ -18,7 +18,9 @@ residence_plot <- plot_ly(residence, labels = ~country_name, values = ~count, ty
                           insidetextorientation = 'radial',
                           marker = list(colors = colors_9_alt)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(residence_plot, "images/demographics/residence_plot.png", scale = 8)
+residence_plot_print <- residence_plot %>%
+  style(textposition = 'inside')
+save_image(residence_plot_print, "images/demographics/residence_plot.png", scale = 8)
 
 ### Gender
 
@@ -59,13 +61,16 @@ age_groups_data <- pbff %>%
 
 age_groups_plot <- plot_ly(age_groups_data, x = ~as_factor(age_groups_2), y = ~percentage, type = 'bar',
                            text = ~paste0(round(percentage, 1), "%"),
+                           textposition = 'none',
                            hoverinfo = 'text',
                            marker = list(color = colors_6)) %>%
   layout(xaxis = list(title = ''),
          yaxis = list(title = ''),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(age_groups_plot, "images/demographics/age_groups_plot.png", scale = 8)
+age_groups_plot_print <- age_groups_plot %>%
+  style(textposition = 'inside')
+save_image(age_groups_plot_print, "images/demographics/age_groups_plot.png", scale = 8)
 
 ### Age groups by country
 
@@ -92,7 +97,7 @@ age_country_plot <- plot_ly(age_country, x = ~percentage, y = ~Country,
                              type = 'bar', color = ~age_groups_2, colors = colors_5, orientation = 'h',
                              text = ~paste0(round(percentage, 1), "%"),  # Text to display inside bars
                              hoverinfo = 'text',  # Display text and x value on hover
-                             textposition = 'inside',
+                             textposition = 'none',
                              texttemplate = '%{text}',
                              insidetextfont = list(color = 'white'),
                              insidetextanchor = 'middle',
@@ -102,7 +107,9 @@ age_country_plot <- plot_ly(age_country, x = ~percentage, y = ~Country,
          yaxis = list(title = ''),
          margin = list(b = 100)) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(age_country_plot, "images/demographics/age_country_plot.png", scale = 8)
+age_country_plot_print <- age_country_plot %>%
+  style(textposition = 'inside')
+save_image(age_country_plot_print, "images/demographics/age_country_plot.png", scale = 8)
 
 ### Weight
 
@@ -148,6 +155,7 @@ edu_data <- pbff %>%
 
 edu_plot <- plot_ly(edu_data, x = ~edu_desc, y = ~percentage, type = "bar",
                     text = ~paste(round(percentage, 1), "%"),  # Display percentage on the bar
+                    textposition = 'none',
                     hovertext = ~paste(n, "<br>", round(percentage, 1), "%"),
                     hoverinfo = "text",  # Show custom hover text
                     marker = list(color = colors_5, line = list(color = 'white', width = 2))) %>%
@@ -155,7 +163,9 @@ edu_plot <- plot_ly(edu_data, x = ~edu_desc, y = ~percentage, type = "bar",
          yaxis = list(title = ""),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(edu_plot, "images/demographics/edu_plot.png", scale = 8)
+edu_plot_print <- edu_plot %>%
+  style(textposition = 'inside')
+save_image(edu_plot_print, "images/demographics/edu_plot.png", scale = 8)
 
 ### SES
 
@@ -165,6 +175,7 @@ ses_data <- pbff %>%
 
 ses_plot <- plot_ly(ses_data, x = ~ses_desc, y = ~percentage, type = "bar",
                     text = ~paste(round(percentage, 1), "%"),  # Display percentage on the bar
+                    textposition = 'none',
                     hovertext = ~paste(n, "<br>", round(percentage, 1), "%"),
                     hoverinfo = "text",  # Show custom hover text
                     marker = list(color = colors_5, line = list(color = 'rgba(255,255,255,1)', width = 2))) %>%
@@ -172,7 +183,9 @@ ses_plot <- plot_ly(ses_data, x = ~ses_desc, y = ~percentage, type = "bar",
          yaxis = list(title = ""),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(ses_plot, "images/demographics/ses_plot.png", scale = 8)
+ses_plot_print <- ses_plot %>%
+  style(textposition = 'inside')
+save_image(ses_plot_print, "images/demographics/ses_plot.png", scale = 8)
 
 ### Nationality
 
@@ -185,14 +198,17 @@ area_data <- pbff %>%
 
 area_plot <- plot_ly(area_data, x = ~area_desc, y = ~percentage, type = "bar",
                      text = ~paste(round(percentage, 1), "%"),  # Display percentage on the bar
+                     textposition = 'none',
                      hovertext = ~paste(n, "<br>", round(percentage, 1), "%"),
                      hoverinfo = "text",  # Show custom hover text
-                     marker = list(color = colors_3, line = list(color = 'white)', width = 1))) %>%
+                     marker = list(color = colors_3, line = list(color = 'white)'))) %>%
   layout(xaxis = list(title = ""),
          yaxis = list(title = ""),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(area_plot, "images/demographics/area_plot.png", scale = 8)
+area_plot_print <- area_plot %>%
+  style(textposition = 'inside')
+save_image(area_plot_print, "images/demographics/area_plot.png", scale = 8)
 
 ### Household size
 
@@ -203,14 +219,17 @@ household_data <- pbff %>%
 
 household_plot <- plot_ly(household_data, x = ~nbmembers_int, y = ~percentage, type = 'bar',
                           text = ~paste(round(percentage, 1), "%"),  # Text on bars
+                          textposition = 'none',
                           hoverinfo = 'text',
                           hovertext = ~paste("Count: ", n, "<br>Percentage: ", round(percentage, 1), "%"),
-                          marker = list(color = colors_5, line = list(color = 'white)', width = 1))) %>%
+                          marker = list(color = colors_5, line = list(color = 'white)'))) %>%
   layout(xaxis = list(title = ""),
          yaxis = list(title = ""),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(household_plot, "images/demographics/household_plot.png", scale = 8)
+household_plot_print <- household_plot %>%
+  style(textposition = 'inside')
+save_image(household_plot_print, "images/demographics/household_plot.png", scale = 8)
 
 ### Children
 
@@ -221,14 +240,17 @@ children_data <- pbff %>%
 
 children_plot <- plot_ly(children_data, x = ~nbchildren_int, y = ~percentage, type = 'bar',
                          text = ~paste(round(percentage, 1), "%"),  # Text on bars
+                         textposition = 'none',
                          hoverinfo = 'text',
                          hovertext = ~paste("Count: ", n, "<br>Percentage: ", round(percentage, 1), "%"),
-                         marker = list(color = colors_6, line = list(color = 'white)', width = 1))) %>%
+                         marker = list(color = colors_6, line = list(color = 'white)'))) %>%
   layout(xaxis = list(title = ""),
          yaxis = list(title = ""),
          bargap = 0.2) %>%
   config(displayModeBar = FALSE, displaylogo = FALSE)
-save_image(children_plot, "images/demographics/children_plot.png", scale = 8)
+children_plot_print <- children_plot %>%
+  style(textposition = 'inside')
+save_image(children_plot_print, "images/demographics/children_plot.png", scale = 8)
 
 ### Responsible shopper in household?
 
