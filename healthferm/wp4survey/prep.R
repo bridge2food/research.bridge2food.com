@@ -1,10 +1,7 @@
 library(haven)
 library(tidyverse)
 library(plotly)
-library(here)
 
-path <- paste0(here(),"/healthferm/wp4survey/")
-setwd(path)
 
 pbff <- read_sav(paste0(path,"data_raw/3325_Data_240212_FINAL new id[87].sav"))
 

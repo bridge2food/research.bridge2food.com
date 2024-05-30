@@ -1,4 +1,7 @@
+library(here)
 
+path <- paste0(here(),"/healthferm/wp4survey/")
+setwd(path)
 
 source("prep.R")
 source("colors.R")
