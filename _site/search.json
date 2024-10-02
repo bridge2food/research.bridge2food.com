@@ -21,46 +21,46 @@
     "text": "Overview\n\nThe Microbial & Recombinant Food Producer (MRFP) Survey captures benchmark data from the microbial and recombinant food production sectors. It includes companies leveraging microorganisms such as fungi, algae, and bacteria, to produce ingredients through processes such as industrial fermentation, precision fermentation, and plant molecular farming.\nEach quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders. For companies operating in the cell-cultured food sector, this survey is an indispensable tool offering empirical guidance for strategic business planning.\nThis survey is made possible through funding from the European Union’s HORIZON EUROPE research and innovation programme under grant agreement No 101059632.\n\nParticipating Companies\nThis survey is conducted by invitation only. To express interest in participating, send an email to research@bridge2food.com.\nLearn about exclusive benefits for survey respondents."
   },
   {
-    "objectID": "surveys/index.html#production-orders",
-    "href": "surveys/index.html#production-orders",
-    "title": "Industry Surveys",
-    "section": "Production & Orders",
-    "text": "Production & Orders\nCore metrics that define the operational health of businesses, reflecting demand dynamics and production efficiency. By examining these figures in the aggregate, stakeholders gain insights into the sector’s capacity utilization, supply chain performance, and market trends and cycles."
-  },
-  {
-    "objectID": "surveys/index.html#inputs-prices",
-    "href": "surveys/index.html#inputs-prices",
-    "title": "Industry Surveys",
-    "section": "Inputs & Prices",
-    "text": "Inputs & Prices\nKey data on the sector’s profitability and competitive landscape, reflecting impacts of economic conditions, regulatory changes, and industry resilience. This provides stakeholders with insights into the industry’s overall financial performance, enabling informed business and policy decisions regarding regulatory issues, resource allocations, and investment strategies."
-  },
-  {
-    "objectID": "surveys/index.html#labour",
-    "href": "surveys/index.html#labour",
-    "title": "Industry Surveys",
-    "section": "Labour",
-    "text": "Labour\nWorkforce dynamics indicators reflecting changes in industry employment and the impacts of labor market conditions. For policymakers, this information is essential for crafting labour regulations and training programs that support growth, while investors also benefit from understanding labour trends, which directly influence operational efficiency and profitability."
-  },
-  {
-    "objectID": "surveys/index.html#investment-innovation",
-    "href": "surveys/index.html#investment-innovation",
-    "title": "Industry Surveys",
-    "section": "Investment & Innovation",
-    "text": "Investment & Innovation\nEssential figures gauging capital expenditures and investments, reflecting the industry’s confidence in future growth and innovation potential. By monitoring spending trends, stakeholders can assess the sector’s medium and long-term outlook, while policymakers can use this information to design incentive structures that support industry needs.\nRead more about methodology."
-  },
-  {
-    "objectID": "surveys/index.html#benefits-for-respondents",
-    "href": "surveys/index.html#benefits-for-respondents",
-    "title": "Industry Surveys",
-    "section": "Benefits for Respondents",
-    "text": "Benefits for Respondents\nParticipating in Bridge2Food’s industry surveys offers exclusive benefits:\n\nPre-public access to data releases and special reports\nOptional feature of company logo on data products\nOpportunity to provide feedback that can help guide future surveys and influence sector-wide policies"
-  },
-  {
-    "objectID": "surveys/example-questionnaires/pps.html",
-    "href": "surveys/example-questionnaires/pps.html",
-    "title": "PPS Example Questionnaire",
+    "objectID": "surveys/methodology.html",
+    "href": "surveys/methodology.html",
+    "title": "Methodology Notes",
     "section": "",
-    "text": "The below examples are representative of the types of questions included in the Plant Protein Suppler (PPS) Survey. This is not a complete list. Actual questions addressed to respondents may differ from the below examples as well as vary throughout the survey cycle.\n\nProduction & Orders\nMy company’s production over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nMy company’s current overall order books are:\n\nMore than sufficient (above normal)\nSufficient (normal for the season)\nNot sufficient (below normal)\n\nI expect my company’s production over the current quarter to:\n\nIncrease\nRemain unchanged\nDecrease\n\nThe future development of my company’s business is:\n\nEasy to predict\nModerately easy to predict\nModerately difficult to predict\nDifficult to predict\n\n\n\nInputs & Prices\nMy company’s input costs (excluding labour) over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nMy company’s selling prices over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\n\n\nLabour\nMy company’s staff numbers over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nOver the past quarter, labour costs in my company:\n\nIncreased\nRemained unchanged\nDecreased\n\n\n\nInvestment & Innovation\nMy company’s total investments over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nDescribe your company’s investments over the past quarter in each category:\n(Increased - Remained unchanged - Decreased)\n\nMachinery and equipment\nLand, building, and infrastructure\nNonphysical capital (intellectual property, R&D, software, data, training, etc.)"
+    "text": "This page outlines key methodology details and explains differences from the Joint Harmonised EU Programme of Business and Consumer Surveys.\n\n\nAggregation Level\nThe Joint Harmonised EU Programme of Business and Consumer Surveys (BCS programme) provides industry data and composite indicators at the NACE Rev. 2.1 two-digit level, where Division 10 represents the manufacture of food products. At the three-digit level, Group 10.1 represents the production of meat products, while Group 10.5 represents the manufacture of dairy products. At the four-digit level of the NACE taxonomy, plant-based meat and milk substitutes fall under Class 10.89, which broadly represents the “manufacture of other food products not elsewhere classified”.\nWhile the BCS programme’s surveys of industry do not provide disaggregated data for Groups 10.1 and 10.5, several economic indicators are available to monitor the status of these sectors, such as producer and consumer prices, and livestock and dairy futures, among others. In contrast, no such figures are available for plant-derived analogs of those sectors’ products.\nBridge2Food’s (B2F) industry surveys provide data for the plant-based meat and dairy substitute sectors that are directly comparable to BCS programme figures for the food industry. These data also serve to benchmark the plant protein sector over time and against other food and technology segments.\n\n\nFrequency\nThe BCS programme’s industry surveys are conducted monthly, with different questionnaires sent out on a quarterly basis. B2F industry surveys combine questions from the BCS programme’s monthly and quarterly industry surveys into a single quarterly questionnaire. Additionally, both BCS programme and B2F industry surveys include extra questions in Q2 and Q4 regarding experiences from the previous and current year, as well as expectations for the upcoming year.\n\n\nGeography\nThe BCS programme’s industry surveys focus exclusively on the European regional economy. B2F industry surveys are not geographically limited and include respondents from all continents and regions. For instance, the BCS programme’s industry surveys include questions on export orders and competitive positions in foreign markets inside and outside the EU. Since B2F industry surveys are not geographically constrained, these questions are excluded. Instead, B2F surveys include questions about geographic sales distributions, intended to highlight the relative significance of regional markets within the sector of the survey’s focus.\n\n\nSeasonal Adjustment\nTypically, data must be collected for at least three years before applying seasonal adjustments. The BCS programme’s industry survey data are available as both seasonally adjusted and non-seasonally adjusted figures. Currently, B2F industry survey data are only available as non-seasonally adjusted.\n\n\nLanguage, Phrasing, and Data Collection\nThe BCS programme’s industry surveys are conducted in the languages of the respondent countries and may be carried out in different formats, including via telephone interview. B2F industry surveys are conducted solely in English via the web-based survey software Qualtrics. While the core meaning of each question remains harmonised with the BCS programme’s industry surveys, the phrasing of some B2F survey questions may vary slightly to optimise presentation and clarity in written format.\n\n\nLabour\nB2F industry surveys include questions about labour that are not present in BCS programme surveys. These cover topics such as labour costs and the availability of skilled workers, offering deeper insights into the sector’s labour supply and demand dynamics.\n\n\nPre-Market Segments\nIn addition to industry surveys of the plant protein sector, whose methodologies closely align with those of the BCS programme’s industry surveys, B2F conducts surveys of emerging protein technology sectors, investors, and industry analysts. These surveys are also designed to provide macro-level insight into their respective fields; however, they focus more on R&D activities and respondent sentiment rather than standard market indicators.\n\n\nResources\nThe BCS programme’s industry survey and reporting methodologies are detailed in the BCS User Guide, national questionnaires, and other documents available on the website of the Directorate General for Economic and Financial Affairs.\nView a B2F industry survey example questionnaire. Note: this is for informal reference only. Data submitted via this form will not be collected. Actual industry survey questionnaires may vary from this example.\nB2F survey data aggregation and visualisation code is publicly available on GitHub.\nFor questions or additional clarifications, please email research@bridge2food.com."
+  },
+  {
+    "objectID": "surveys/ia.html",
+    "href": "surveys/ia.html",
+    "title": "Industry Analyst (IA) Survey",
+    "section": "",
+    "text": "Overview\n\nThe Industry Analyst (IA) Survey harnesses the expertise of representatives from the academic, public, and nonprofit sectors. It includes professionals with deep understanding of market dynamics, technological potential and constraints, and the nuances of policy and regulatory issues.\nEach quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders.\nThis survey is made possible through funding from the European Union’s HORIZON EUROPE research and innovation programme under grant agreement No 101059632.\n\nParticipating Analysts\nThis survey is conducted by invitation only. To express interest in participating, send an email to research@bridge2food.com.\nLearn about exclusive benefits for survey respondents."
+  },
+  {
+    "objectID": "surveys/ccfp.html",
+    "href": "surveys/ccfp.html",
+    "title": "Cell-Cultured Food Producer (CCFP) Survey",
+    "section": "",
+    "text": "Overview\n\nThe Cell-Cultured Food Producer (CCFP) Survey captures benchmark data from the cell-cultured meat and dairy sectors. It includes producers of cell-cultured foods and ingredients as well as supporting technology, equipment, and input suppliers.\nEach quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders. For companies operating in the cell-cultured food sector, this survey is an indispensable tool offering empirical guidance for strategic business planning.\nThis survey is made possible through funding from the European Union’s HORIZON EUROPE research and innovation programme under grant agreement No 101059632.\n\nParticipating Companies\nThis survey is conducted by invitation only. To express interest in participating, send an email to research@bridge2food.com.\nLearn about exclusive benefits for survey respondents."
+  },
+  {
+    "objectID": "intelligence.html",
+    "href": "intelligence.html",
+    "title": "Industry Intelligence",
+    "section": "",
+    "text": "Benchmark data and sector analysis\n\n\nWe provide open-access data and reporting products to help align policies and strategies with the outcomes they intend.\n\n\nIndustry Surveys\nBridge2Food’s industry surveys, co-funded by the European Union, provide benchmark data for the sustainable food and protein sectors. Each quarter, we publish a series of key indicators, offering policymakers, investors, and other stakeholders valuable insight into the industry’s status and outlook.\nLearn more about our industry surveys.\n\n\nReporting Products\nWe produce open-access, exclusive, and bespoke reports leveraging our industry survey data and other Bridge2Food network resources.\nTo learn more about our reporting products, send an email to research@bridge2food.com."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Bridge2Food Research",
+    "section": "",
+    "text": "The industry intelligence and science communication arm of Bridge2Food\n\n\nWe address global food and agriculture challenges by bridging knowledge gaps between industry, academia, and policy to:\n\nFacilitate evidence-based decisions and policy-making processes\nAccelerate the development and implementation of high-impact technologies\nRaise standards for how science is communicated and harnessed\n\nThrough the provision of information, data, and analysis, Bridge2Food Research helps establish rigorous baselines for understanding complex, multifaceted topics. By doing so, we foster public and private sector alignment with scientific knowledge, while bringing to light untapped opportunities for collaboration and problem solving at scale."
+  },
+  {
+    "objectID": "data/index.html",
+    "href": "data/index.html",
+    "title": "Industry Data Portal",
+    "section": "",
+    "text": "Coming soon…\nThis page is under development. Please check back regularly for updates and refer to the calendar below for Industry Survey data releases.\n\n\nCalendar\nQuestionnaires are sent to respondents on the first working day of the survey quarter. Submissions are collected during the first calendar month of the survey quarter and public data releases are scheduled for the first working day of the next quarter.\n\n\n\nSurvey\nFrequency\nNext Release\n\n\n\n\nPPS\nQuarterly\nJanuary 2, 2025\n\n\nPMP\nBiannual\nJanuary 2, 2025\n\n\nPDP\nAnnual\nJanuary 2, 2025\n\n\n\n\nNote: Quarterly surveys include questions about the previous quarter as well as expectations for the current and future quarters. This means that releases of indicators of industry experience are lagged by two quarters, while indicators of industry expectations are lagged by one quarter."
   },
   {
     "objectID": "projects.html",
@@ -98,39 +98,46 @@
     "text": "ProFuture\nProFuture was a four-year research project funded under the European Union’s Horizon 2020 program, spanning from 2019 to 2023.\n\n\n\nThe project’s aim was to scale microalgae production and prepare the market for uptake of microalgae proteins as ingredients for innovative and sustainable food and feed products. Bringing together 31 partners across academia and industry, ProFuture was coordinated by the Institute of Agrifood Research and Technology (IRTA) in Spain. The final conference of ProFuture took place on 13th and 14th of September 2023 in Brussels.\nLearn more on the ProFuture website."
   },
   {
-    "objectID": "data/index.html",
-    "href": "data/index.html",
-    "title": "Industry Data Portal",
+    "objectID": "surveys/example-questionnaires/pps.html",
+    "href": "surveys/example-questionnaires/pps.html",
+    "title": "PPS Example Questionnaire",
     "section": "",
-    "text": "Coming soon…\nThis page is under development. Please check back regularly for updates and refer to the calendar below for Industry Survey data releases.\n\n\nCalendar\nQuestionnaires are sent to respondents on the first working day of the survey quarter. Submissions are collected during the first calendar month of the survey quarter and public data releases are scheduled for the first working day of the next quarter.\n\n\n\nSurvey\nFrequency\nNext Release\n\n\n\n\nPPS\nQuarterly\nJanuary 2, 2025\n\n\nPMP\nBiannual\nJanuary 2, 2025\n\n\nPDP\nAnnual\nJanuary 2, 2025\n\n\n\n\nNote: Quarterly surveys include questions about the previous quarter as well as expectations for the current and future quarters. This means that releases of indicators of industry experience are lagged by two quarters, while indicators of industry expectations are lagged by one quarter."
+    "text": "The below examples are representative of the types of questions included in the Plant Protein Suppler (PPS) Survey. This is not a complete list. Actual questions addressed to respondents may differ from the below examples as well as vary throughout the survey cycle.\n\nProduction & Orders\nMy company’s production over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nMy company’s current overall order books are:\n\nMore than sufficient (above normal)\nSufficient (normal for the season)\nNot sufficient (below normal)\n\nI expect my company’s production over the current quarter to:\n\nIncrease\nRemain unchanged\nDecrease\n\nThe future development of my company’s business is:\n\nEasy to predict\nModerately easy to predict\nModerately difficult to predict\nDifficult to predict\n\n\n\nInputs & Prices\nMy company’s input costs (excluding labour) over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nMy company’s selling prices over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\n\n\nLabour\nMy company’s staff numbers over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nOver the past quarter, labour costs in my company:\n\nIncreased\nRemained unchanged\nDecreased\n\n\n\nInvestment & Innovation\nMy company’s total investments over the past quarter:\n\nIncreased\nRemained unchanged\nDecreased\n\nDescribe your company’s investments over the past quarter in each category:\n(Increased - Remained unchanged - Decreased)\n\nMachinery and equipment\nLand, building, and infrastructure\nNonphysical capital (intellectual property, R&D, software, data, training, etc.)"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About Bridge2Food Research",
-    "section": "",
-    "text": "The industry intelligence and science communication arm of Bridge2Food\n\n\nWe address global food and agriculture challenges by bridging knowledge gaps between industry, academia, and policy to:\n\nFacilitate evidence-based decisions and policy-making processes\nAccelerate the development and implementation of high-impact technologies\nRaise standards for how science is communicated and harnessed\n\nThrough the provision of information, data, and analysis, Bridge2Food Research helps establish rigorous baselines for understanding complex, multifaceted topics. By doing so, we foster public and private sector alignment with scientific knowledge, while bringing to light untapped opportunities for collaboration and problem solving at scale."
+    "objectID": "surveys/index.html#production-orders",
+    "href": "surveys/index.html#production-orders",
+    "title": "Industry Surveys",
+    "section": "Production & Orders",
+    "text": "Production & Orders\nCore metrics that define the operational health of businesses, reflecting demand dynamics and production efficiency. By examining these figures in the aggregate, stakeholders gain insights into the sector’s capacity utilization, supply chain performance, and market trends and cycles."
   },
   {
-    "objectID": "intelligence.html",
-    "href": "intelligence.html",
-    "title": "Industry Intelligence",
-    "section": "",
-    "text": "Benchmark data and sector analysis\n\n\nWe provide open-access data and reporting products to help align policies and strategies with the outcomes they intend.\n\n\nIndustry Surveys\nBridge2Food’s industry surveys, co-funded by the European Union, provide benchmark data for the sustainable food and protein sectors. Each quarter, we publish a series of key indicators, offering policymakers, investors, and other stakeholders valuable insight into the industry’s status and outlook.\nLearn more about our industry surveys.\n\n\nReporting Products\nWe produce open-access, exclusive, and bespoke reports leveraging our industry survey data and other Bridge2Food network resources.\nTo learn more about our reporting products, send an email to research@bridge2food.com."
+    "objectID": "surveys/index.html#inputs-prices",
+    "href": "surveys/index.html#inputs-prices",
+    "title": "Industry Surveys",
+    "section": "Inputs & Prices",
+    "text": "Inputs & Prices\nKey data on the sector’s profitability and competitive landscape, reflecting impacts of economic conditions, regulatory changes, and industry resilience. This provides stakeholders with insights into the industry’s overall financial performance, enabling informed business and policy decisions regarding regulatory issues, resource allocations, and investment strategies."
   },
   {
-    "objectID": "surveys/ccfp.html",
-    "href": "surveys/ccfp.html",
-    "title": "Cell-Cultured Food Producer (CCFP) Survey",
-    "section": "",
-    "text": "Overview\n\nThe Cell-Cultured Food Producer (CCFP) Survey captures benchmark data from the cell-cultured meat and dairy sectors. It includes producers of cell-cultured foods and ingredients as well as supporting technology, equipment, and input suppliers.\nEach quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders. For companies operating in the cell-cultured food sector, this survey is an indispensable tool offering empirical guidance for strategic business planning.\nThis survey is made possible through funding from the European Union’s HORIZON EUROPE research and innovation programme under grant agreement No 101059632.\n\nParticipating Companies\nThis survey is conducted by invitation only. To express interest in participating, send an email to research@bridge2food.com.\nLearn about exclusive benefits for survey respondents."
+    "objectID": "surveys/index.html#labour",
+    "href": "surveys/index.html#labour",
+    "title": "Industry Surveys",
+    "section": "Labour",
+    "text": "Labour\nWorkforce dynamics indicators reflecting changes in industry employment and the impacts of labor market conditions. For policymakers, this information is essential for crafting labour regulations and training programs that support growth, while investors also benefit from understanding labour trends, which directly influence operational efficiency and profitability."
   },
   {
-    "objectID": "surveys/ia.html",
-    "href": "surveys/ia.html",
-    "title": "Industry Analyst (IA) Survey",
-    "section": "",
-    "text": "Overview\n\nThe Industry Analyst (IA) Survey harnesses the expertise of representatives from the academic, public, and nonprofit sectors. It includes professionals with deep understanding of market dynamics, technological potential and constraints, and the nuances of policy and regulatory issues.\nEach quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders.\nThis survey is made possible through funding from the European Union’s HORIZON EUROPE research and innovation programme under grant agreement No 101059632.\n\nParticipating Analysts\nThis survey is conducted by invitation only. To express interest in participating, send an email to research@bridge2food.com.\nLearn about exclusive benefits for survey respondents."
+    "objectID": "surveys/index.html#investment-innovation",
+    "href": "surveys/index.html#investment-innovation",
+    "title": "Industry Surveys",
+    "section": "Investment & Innovation",
+    "text": "Investment & Innovation\nEssential figures gauging capital expenditures and investments, reflecting the industry’s confidence in future growth and innovation potential. By monitoring spending trends, stakeholders can assess the sector’s medium and long-term outlook, while policymakers can use this information to design incentive structures that support industry needs.\nRead more about methodology."
+  },
+  {
+    "objectID": "surveys/index.html#benefits-for-respondents",
+    "href": "surveys/index.html#benefits-for-respondents",
+    "title": "Industry Surveys",
+    "section": "Benefits for Respondents",
+    "text": "Benefits for Respondents\nParticipating in Bridge2Food’s industry surveys offers exclusive benefits:\n\nPre-public access to data releases and special reports\nOptional feature of company logo on data products\nOpportunity to provide feedback that can help guide future surveys and influence sector-wide policies"
   },
   {
     "objectID": "surveys/mpp.html",
@@ -152,12 +159,5 @@
     "title": "Plant Protein Upstream Supplier (PPUS) Survey",
     "section": "",
     "text": "Overview\n\nThe Plant Protein Upstream Supplier (PPUS) Survey captures benchmark data from the plant protein ingredient and equipment sectors. It includes upstream suppliers targeting producers of plant-based meat, dairy, and egg products.\nEach quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders. For companies operating in the plant protein sector, this survey is an indispensable tool offering empirical guidance for strategic business planning.\nThis survey is made possible through funding from the European Union’s HORIZON EUROPE research and innovation programme under grant agreement No 101059632.\n\nParticipating Companies\nThis survey is conducted by invitation only. To express interest in participating, send an email to research@bridge2food.com.\nLearn about exclusive benefits for survey respondents."
-  },
-  {
-    "objectID": "surveys/methodology.html",
-    "href": "surveys/methodology.html",
-    "title": "Methodology Notes",
-    "section": "",
-    "text": "This page outlines key methodology details and explains differences from the Joint Harmonised EU Programme of Business and Consumer Surveys.\n\n\nAggregation Level\nThe Joint Harmonised EU Programme of Business and Consumer Surveys (BCS programme) provides industry data and composite indicators at the NACE Rev. 2.1 two-digit level, where Division 10 represents the manufacture of food products. At the three-digit level, Group 10.1 represents the production of meat products, while Group 10.5 represents the manufacture of dairy products. At the four-digit level of the NACE taxonomy, plant-based meat and milk substitutes fall under Class 10.89, which broadly represents the “manufacture of other food products not elsewhere classified”.\nWhile the BCS programme’s surveys of industry do not provide disaggregated data for Groups 10.1 and 10.5, several economic indicators are available to monitor the status of these sectors, such as producer and consumer prices, and livestock and dairy futures, among others. In contrast, no such figures are available for plant-derived analogs of those sectors’ products.\nBridge2Food’s (B2F) industry surveys provide data for the plant-based meat and dairy substitute sectors that are directly comparable to BCS programme figures for the food industry. These data also serve to benchmark the plant protein sector over time and against other food and technology segments.\n\n\nFrequency\nThe BCS programme’s industry surveys are conducted monthly, with different questionnaires sent out on a quarterly basis. B2F industry surveys combine questions from the BCS programme’s monthly and quarterly industry surveys into a single quarterly questionnaire. Additionally, both BCS programme and B2F industry surveys include extra questions in Q2 and Q4 regarding experiences from the previous and current year, as well as expectations for the upcoming year.\n\n\nGeography\nThe BCS programme’s industry surveys focus exclusively on the European regional economy. B2F industry surveys are not geographically limited and include respondents from all continents and regions. For instance, the BCS programme’s industry surveys include questions on export orders and competitive positions in foreign markets inside and outside the EU. Since B2F industry surveys are not geographically constrained, these questions are excluded. Instead, B2F surveys include questions about geographic sales distributions, intended to highlight the relative significance of regional markets within the sector of the survey’s focus.\n\n\nSeasonal Adjustment\nTypically, data must be collected for at least three years before applying seasonal adjustments. The BCS programme’s industry survey data are available as both seasonally adjusted and non-seasonally adjusted figures. Currently, B2F industry survey data are only available as non-seasonally adjusted.\n\n\nLanguage, Phrasing, and Data Collection\nThe BCS programme’s industry surveys are conducted in the languages of the respondent countries and may be carried out in different formats, including via telephone interview. B2F industry surveys are conducted solely in English via the web-based survey software Qualtrics. While the core meaning of each question remains harmonised with the BCS programme’s industry surveys, the phrasing of some B2F survey questions may vary slightly to optimise presentation and clarity in written format.\n\n\nLabour\nB2F industry surveys include questions about labour that are not present in BCS programme surveys. These cover topics such as labour costs and the availability of skilled workers, offering deeper insights into the sector’s labour supply and demand dynamics.\n\n\nPre-Market Segments\nIn addition to industry surveys of the plant protein sector, whose methodologies closely align with those of the BCS programme’s industry surveys, B2F conducts surveys of emerging protein technology sectors, investors, and industry analysts. These surveys are also designed to provide macro-level insight into their respective fields; however, they focus more on R&D activities and respondent sentiment rather than standard market indicators.\n\n\nResources\nThe BCS programme’s industry survey and reporting methodologies are detailed in the BCS User Guide, national questionnaires, and other documents available on the website of the Directorate General for Economic and Financial Affairs.\nView a B2F industry survey example questionnaire. Note: this is for informal reference only. Data submitted via this form will not be collected. Actual industry survey questionnaires may vary from this example.\nB2F survey data aggregation and visualisation code is publicly available on GitHub.\nFor questions or additional clarifications, please email research@bridge2food.com."
   }
 ]
