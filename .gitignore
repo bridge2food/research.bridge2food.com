@@ -3,11 +3,4 @@
 .RData
 .Ruserdata
 
-/data_raw/
-
-/healthferm/wp4survey/data_raw/
-/healthferm/wp4survey/data_csv/
 /.quarto/
-/healthferm/wp4survey/index1.qmd
-/healthferm/wp4survey/index1.rmarkdown
-/_site/healthferm/wp4survey/index1.html

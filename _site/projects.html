@@ -38,6 +38,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="site_libs/quarto-dashboard/stickythead.js"></script>
+<script src="site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="site_libs/quarto-dashboard/components.js"></script>
+<link href="site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -55,13 +63,13 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Research Projects">
 <meta name="twitter:title" content="Research Projects">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed">
+<body class="quarto-dashboard nav-fixed dashboard-fill">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -94,109 +102,127 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Research Projects</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
 
-      
-    
-      
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Research Projects</a></div>
+        
+        
+      </div>
     </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-current-projects" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#current-projects" data-scrolling="false" href="#current-projects" aria-controls="current-projects" aria-selected="true"><span class="nav-link-text">Current Projects</span></a></li><li class="nav-item" role="presentation"><a id="tab-completed-projects" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#completed-projects" data-scrolling="false" href="#completed-projects" aria-controls="completed-projects" aria-selected="false"><span class="nav-link-text">Completed Projects</span></a></li></ul></div></div>
+</nav>
+</header></header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#current-projects" id="toc-current-projects" class="nav-link active" data-scroll-target="#current-projects">Current Projects</a>
-  <ul class="collapse">
-  <li><a href="#giant-leaps" id="toc-giant-leaps" class="nav-link" data-scroll-target="#giant-leaps">Giant Leaps</a></li>
-  <li><a href="#healthferm" id="toc-healthferm" class="nav-link" data-scroll-target="#healthferm">HealthFerm</a></li>
-  <li><a href="#plenitude" id="toc-plenitude" class="nav-link" data-scroll-target="#plenitude">Plenitude</a></li>
-  </ul></li>
-  <li><a href="#completed-projects" id="toc-completed-projects" class="nav-link" data-scroll-target="#completed-projects">Completed Projects</a>
-  <ul class="collapse">
-  <li><a href="#profuture" id="toc-profuture" class="nav-link" data-scroll-target="#profuture">ProFuture</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
-
-
-
-
-<div class="fs-1">
+<div class="fs-1 bslib-grid-item html-fill-item">
 <p>Translating research into reality</p>
 </div>
-<div class="fs-4">
+<div class="fs-4 bslib-grid-item html-fill-item">
 <p>We enable the uptake of sustainable food innovations by delivering knowledge where it has the greatest impact.</p>
 <p>We author comprehensive reports and produce insightful data visualisations. Leveraging the Bridge2Food network, we manage media communications and organise meetings, workshops, and events.</p>
 </div>
-<section id="current-projects" class="level1 page-columns page-full">
-<h1>Current Projects</h1>
-<section id="giant-leaps" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="giant-leaps">Giant Leaps</h2>
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="current-projects" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-current-projects">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>GIANT LEAPS is the Horizon Europe-funded research project delivering strategic innovations, methodologies, and open-access datasets to accelerate the shift toward more sustainable and healthy food systems.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><img src=".\assets/images/logos/giantleaps.png" class="img-fluid"></p>
-</div></div><p>Bringing together 35 partners from 13 EU member states and 4 associated and affiliated countries (Canada, Serbia, Switzerland, United Kingdom), the GIANT LEAPS consortium works in line with the Farm to Fork Strategy and European Green Deal target of reaching climate neutrality by 2050.</p>
+<div class="column-margin html-fill-item html-fill-container">
+<img src=".\assets/images/logos/giantleaps.png" class="img-fluid">
+</div>
+<p>Bringing together 35 partners from 13 EU member states and 4 associated and affiliated countries (Canada, Serbia, Switzerland, United Kingdom), the GIANT LEAPS consortium works in line with the Farm to Fork Strategy and European Green Deal target of reaching climate neutrality by 2050.</p>
 <p>Learn more on the <a href="https://giant-leaps.eu/">Giant Leaps website</a>.</p>
-</section>
-<section id="healthferm" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="healthferm">HealthFerm</h2>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>HealthFerm is the EU-funded research project investigating innovative pulse and cereal-based food fermentations together with the health effects and consumer perception of novel fermented foods.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><img src=".\assets/images/logos/healthferm.png" class="img-fluid"></p>
-</div></div><p>With 23 partners from across Europe, HealthFerm is committed to transitioning towards a more sustainable global food system by setting new standards for individual, societal, and planetary health through increased and more resource-efficient use of plant-based raw materials in foods.</p>
+<div class="column-margin html-fill-item html-fill-container">
+<img src=".\assets/images/logos/healthferm.png" class="img-fluid">
+</div>
+<p>With 23 partners from across Europe, HealthFerm is committed to transitioning towards a more sustainable global food system by setting new standards for individual, societal, and planetary health through increased and more resource-efficient use of plant-based raw materials in foods.</p>
 <p>Learn more on the <a href="https://www.healthferm.eu/">HealthFerm website</a>.</p>
-</section>
-<section id="plenitude" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="plenitude">Plenitude</h2>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>Plenitude is the EU-funded flagship project pioneering the mycoprotein value chain of the future.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><img src=".\assets/images/logos/plenitude.png" class="img-fluid"></p>
-</div></div><p>By bringing together 10 partners from across Europe, Plenitude leverages an innovative, circular bioprocess integrating the production of bio ethanol and mycoprotein to build new value chains for bio-based products that can provide a range of environmental, economic, and public health benefits.</p>
+<div class="column-margin html-fill-item html-fill-container">
+<img src=".\assets/images/logos/plenitude.png" class="img-fluid">
+</div>
+<p>By bringing together 10 partners from across Europe, Plenitude leverages an innovative, circular bioprocess integrating the production of bio ethanol and mycoprotein to build new value chains for bio-based products that can provide a range of environmental, economic, and public health benefits.</p>
 <p>Learn more on the <a href="https://plenitude-eu.com/">Plenitude website</a>.</p>
-</section>
-</section>
-<section id="completed-projects" class="level1 page-columns page-full">
-<h1>Completed Projects</h1>
-<section id="profuture" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="profuture">ProFuture</h2>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="completed-projects" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-completed-projects">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>ProFuture was a four-year research project funded under the European Union’s Horizon 2020 program, spanning from 2019 to 2023.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><img src=".\assets/images/logos/profuture.png" class="img-fluid"></p>
-</div></div><p>The project’s aim was to scale microalgae production and prepare the market for uptake of microalgae proteins as ingredients for innovative and sustainable food and feed products. Bringing together 31 partners across academia and industry, ProFuture was coordinated by the Institute of Agrifood Research and Technology (IRTA) in Spain. The final conference of ProFuture took place on 13th and 14th of September 2023 in Brussels.</p>
+<div class="column-margin html-fill-item html-fill-container">
+<img src=".\assets/images/logos/profuture.png" class="img-fluid">
+</div>
+<p>The project’s aim was to scale microalgae production and prepare the market for uptake of microalgae proteins as ingredients for innovative and sustainable food and feed products. Bringing together 31 partners across academia and industry, ProFuture was coordinated by the Institute of Agrifood Research and Technology (IRTA) in Spain. The final conference of ProFuture took place on 13th and 14th of September 2023 in Brussels.</p>
 <p>Learn more on the <a href="https://pro-future.eu/">ProFuture website</a>.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
-
-</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -765,6 +791,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </footer>
 
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
 
 
 

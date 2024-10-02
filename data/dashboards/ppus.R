@@ -20,10 +20,6 @@ ppus_latest <- latest_data(survey_name)
 # Variable naming conventions:
 # p = past, c = current, n = next, q = quarter
 
-# Fix typo in variable name (fixed in qualtrics, remove this after next data import)
-ppus_latest <- ppus_latest %>%
-  rename(ip.costs_next_3.q = po.costs_next_3.q)
-
 
 ##########
 
@@ -72,7 +68,7 @@ stocks_curr_pie <- pie_chart(ppus_latest, "po.stocks_curr.q")
 prod_past_3_pie <- pie_chart(ppus_latest, "po.prod_past_3.q")
 prod_next_3_pie <- pie_chart(ppus_latest, "po.prod_next_3.q")
 
-prod_lvl_box <- v_box_plot(ppus_latest, "po.prod_lvl.q")
+prod_lvl_box <- v_box_plot(ppus_latest, "po.prod_lvl.q_1")
 prod_cap_bar <- v_bar_chart(ppus_latest, "po.prod_cap.q")
 
 prod_limits_pie <- pie_chart_cols(ppus_latest, "po.prod_limits.q")

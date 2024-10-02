@@ -38,6 +38,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="../site_libs/quarto-dashboard/stickythead.js"></script>
+<script src="../site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="../site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="../site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="../site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="../site_libs/quarto-dashboard/components.js"></script>
+<link href="../site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -55,15 +63,13 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Methodology Notes">
-<meta property="og:description" content="">
 <meta name="twitter:title" content="Methodology Notes">
-<meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed">
+<body class="quarto-dashboard nav-fixed dashboard-fill fullcontent">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -96,98 +102,163 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Methodology Notes</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
 
-      
-    
-      
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Methodology Notes</a></div>
+        
+        
+      </div>
     </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-aggregation-level" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#aggregation-level" data-scrolling="false" href="#aggregation-level" aria-controls="aggregation-level" aria-selected="true"><span class="nav-link-text">Aggregation Level</span></a></li><li class="nav-item" role="presentation"><a id="tab-frequency" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#frequency" data-scrolling="false" href="#frequency" aria-controls="frequency" aria-selected="false"><span class="nav-link-text">Frequency</span></a></li><li class="nav-item" role="presentation"><a id="tab-geography" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#geography" data-scrolling="false" href="#geography" aria-controls="geography" aria-selected="false"><span class="nav-link-text">Geography</span></a></li><li class="nav-item" role="presentation"><a id="tab-seasonal-adjustment" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#seasonal-adjustment" data-scrolling="false" href="#seasonal-adjustment" aria-controls="seasonal-adjustment" aria-selected="false"><span class="nav-link-text">Seasonal Adjustment</span></a></li><li class="nav-item" role="presentation"><a id="tab-language-phrasing-and-data-collection" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#language-phrasing-and-data-collection" data-scrolling="false" href="#language-phrasing-and-data-collection" aria-controls="language-phrasing-and-data-collection" aria-selected="false"><span class="nav-link-text">Language, Phrasing, and Data Collection</span></a></li><li class="nav-item" role="presentation"><a id="tab-labour" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#labour" data-scrolling="false" href="#labour" aria-controls="labour" aria-selected="false"><span class="nav-link-text">Labour</span></a></li><li class="nav-item" role="presentation"><a id="tab-pre-market-segments" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#pre-market-segments" data-scrolling="false" href="#pre-market-segments" aria-controls="pre-market-segments" aria-selected="false"><span class="nav-link-text">Pre-Market Segments</span></a></li><li class="nav-item" role="presentation"><a id="tab-resources" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#resources" data-scrolling="false" href="#resources" aria-controls="resources" aria-selected="false"><span class="nav-link-text">Resources</span></a></li></ul></div></div>
+</nav>
+</header></header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#aggregation-level" id="toc-aggregation-level" class="nav-link active" data-scroll-target="#aggregation-level">Aggregation Level</a></li>
-  <li><a href="#frequency" id="toc-frequency" class="nav-link" data-scroll-target="#frequency">Frequency</a></li>
-  <li><a href="#geography" id="toc-geography" class="nav-link" data-scroll-target="#geography">Geography</a></li>
-  <li><a href="#seasonal-adjustment" id="toc-seasonal-adjustment" class="nav-link" data-scroll-target="#seasonal-adjustment">Seasonal Adjustment</a></li>
-  <li><a href="#language-phrasing-and-data-collection" id="toc-language-phrasing-and-data-collection" class="nav-link" data-scroll-target="#language-phrasing-and-data-collection">Language, Phrasing, and Data Collection</a></li>
-  <li><a href="#labour" id="toc-labour" class="nav-link" data-scroll-target="#labour">Labour</a></li>
-  <li><a href="#pre-market-segments" id="toc-pre-market-segments" class="nav-link" data-scroll-target="#pre-market-segments">Pre-Market Segments</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  </ul>
-</nav>
-    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
 
-
-
-
-
-<div class="fs-4">
+<div class="fs-4 bslib-grid-item html-fill-item">
 <p>This page outlines key methodology details and explains differences from the Joint Harmonised EU Programme of Business and Consumer Surveys.</p>
 </div>
-<section id="aggregation-level" class="level1">
-<h1>Aggregation Level</h1>
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="aggregation-level" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-aggregation-level">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>The <a href="https://economy-finance.ec.europa.eu/economic-forecast-and-surveys/business-and-consumer-surveys_en">Joint Harmonised EU Programme of Business and Consumer Surveys</a> (BCS programme) provides industry data and composite indicators at the <a href="https://showvoc.op.europa.eu/#/datasets/ESTAT_Statistical_Classification_of_Economic_Activities_in_the_European_Community_Rev._2.1._%28NACE_2.1%29/data">NACE Rev.&nbsp;2.1</a> two-digit level, where Division 10 represents the manufacture of food products. At the three-digit level, Group 10.1 represents the production of meat products, while Group 10.5 represents the manufacture of dairy products. At the four-digit level of the NACE taxonomy, plant-based meat and milk substitutes fall under Class 10.89, which broadly represents the “manufacture of other food products not elsewhere classified”.</p>
 <p>While the BCS programme’s surveys of industry do not provide disaggregated data for Groups 10.1 and 10.5, several economic indicators are available to monitor the status of these sectors, such as producer and consumer prices, and livestock and dairy futures, among others. In contrast, no such figures are available for plant-derived analogs of those sectors’ products.</p>
 <p>Bridge2Food’s (B2F) industry surveys provide data for the plant-based meat and dairy substitute sectors that are directly comparable to BCS programme figures for the food industry. These data also serve to benchmark the plant protein sector over time and against other food and technology segments.</p>
-</section>
-<section id="frequency" class="level1">
-<h1>Frequency</h1>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="frequency" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-frequency">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>The BCS programme’s industry surveys are conducted monthly, with different questionnaires sent out on a quarterly basis. B2F industry surveys combine questions from the BCS programme’s monthly and quarterly industry surveys into a single quarterly questionnaire. Additionally, both BCS programme and B2F industry surveys include extra questions in Q2 and Q4 regarding experiences from the previous and current year, as well as expectations for the upcoming year.</p>
-</section>
-<section id="geography" class="level1">
-<h1>Geography</h1>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="geography" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-geography">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>The BCS programme’s industry surveys focus exclusively on the European regional economy. B2F industry surveys are not geographically limited and include respondents from all continents and regions. For instance, the BCS programme’s industry surveys include questions on export orders and competitive positions in foreign markets inside and outside the EU. Since B2F industry surveys are not geographically constrained, these questions are excluded. Instead, B2F surveys include questions about geographic sales distributions, intended to highlight the relative significance of regional markets within the sector of the survey’s focus.</p>
-</section>
-<section id="seasonal-adjustment" class="level1">
-<h1>Seasonal Adjustment</h1>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="seasonal-adjustment" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-seasonal-adjustment">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>Typically, data must be collected for at least three years before applying seasonal adjustments. The BCS programme’s industry survey data are available as both seasonally adjusted and non-seasonally adjusted figures. Currently, B2F industry survey data are only available as non-seasonally adjusted.</p>
-</section>
-<section id="language-phrasing-and-data-collection" class="level1">
-<h1>Language, Phrasing, and Data Collection</h1>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="language-phrasing-and-data-collection" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-language-phrasing-and-data-collection">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>The BCS programme’s industry surveys are conducted in the languages of the respondent countries and may be carried out in different formats, including via telephone interview. B2F industry surveys are conducted solely in English via the web-based survey software Qualtrics. While the core meaning of each question remains harmonised with the BCS programme’s industry surveys, the phrasing of some B2F survey questions may vary slightly to optimise presentation and clarity in written format.</p>
-</section>
-<section id="labour" class="level1">
-<h1>Labour</h1>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="labour" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-labour">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>B2F industry surveys include questions about labour that are not present in BCS programme surveys. These cover topics such as labour costs and the availability of skilled workers, offering deeper insights into the sector’s labour supply and demand dynamics.</p>
-</section>
-<section id="pre-market-segments" class="level1">
-<h1>Pre-Market Segments</h1>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="pre-market-segments" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-pre-market-segments">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>In addition to industry surveys of the plant protein sector, whose methodologies closely align with those of the BCS programme’s industry surveys, B2F conducts surveys of emerging protein technology sectors, investors, and industry analysts. These surveys are also designed to provide macro-level insight into their respective fields; however, they focus more on R&amp;D activities and respondent sentiment rather than standard market indicators.</p>
-</section>
-<section id="resources" class="level1">
-<h1>Resources</h1>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="resources" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-resources">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>The BCS programme’s industry survey and reporting methodologies are detailed in the BCS User Guide, national questionnaires, and other documents available on the website of the <a href="https://economy-finance.ec.europa.eu/economic-forecast-and-surveys/business-and-consumer-surveys/methodology-business-and-consumer-surveys_en">Directorate General for Economic and Financial Affairs</a>.</p>
 <p>View a B2F industry survey <a href="https://qualtricsxmgtnmmghg4.eu.qualtrics.com/jfe8/preview/previewId/ed37fae6-1514-4486-965a-6fe7b8df4ceb/SV_8A34lhRLUqBdIr4?Q_CHL=preview&amp;Q_SurveyVersionID=current&amp;Q_ShowMobile=0&amp;Q_Loader=0">example questionnaire</a>. Note: this is for informal reference only. Data submitted via this form will not be collected. Actual industry survey questionnaires may vary from this example.</p>
 <p>B2F survey data aggregation and visualisation code is publicly available on <a href="https://github.com/bridge2food/research/tree/main/data/dashboards">GitHub</a>.</p>
 <p>For questions or additional clarifications, please email research@bridge2food.com.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 
 
-</section>
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
 
-</main> <!-- /main -->
+</div>
+</div>
+</div>
+</div>
+
+
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -756,6 +827,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </footer>
 
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
 
 
 
