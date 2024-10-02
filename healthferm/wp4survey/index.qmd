@@ -3,6 +3,7 @@ title: "WP4 Consumer Survey"
 format: dashboard
 logo: logo.svg
 scrolling: true
+freeze: true
 navbar:
   collapse: true
   pinned: true
