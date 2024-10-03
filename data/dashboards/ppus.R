@@ -9,8 +9,17 @@ library(tools)
 # load functions
 source(paste0(here(),"/data", "/dashboards", "/functions", "/functions.R"))
 
-# set path for survey files
-dir_path <- paste0(here(),"/data_raw/qualtrics/")
+# Toggle to include pre-release data
+include_pre_release <- T  # Set to TRUE to include pre-release data
+
+# Set path for survey files
+base_dir <- paste0(here(), "/data_raw/qualtrics/")
+
+if (include_pre_release) {
+  dir_path <- c(paste0(base_dir, "pre-release/"), base_dir)
+} else {
+  dir_path <- base_dir
+}
 
 # Define the survey name
 survey_name <- "PPUS"
@@ -29,7 +38,7 @@ ppus_latest <- latest_data(survey_name)
 
 agg <- process_agg_data(survey_name, dir_path)
 indicators <- process_indicators_data(survey_name, dir_path)
-d_indicators <- delta_indicators(survey_name, dir_path)
+d_indicators <- delta_indicators(indicators)
 
 ############# Valuebox values
 

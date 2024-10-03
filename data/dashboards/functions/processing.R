@@ -1,7 +1,7 @@
+#################### Processing functions
+
 # General function to process data for a given survey and function (agg or indicators)
-process_data <- function(survey_name, dir_path, calc_func, file_suffix) {
-  file_path <- paste0(dir_path, "/", tolower(survey_name), "-", file_suffix, ".rds")
-  
+process_data <- function(survey_name, dir_path, calc_func) {
   df <- data.frame()
   
   # List and process all files
@@ -23,15 +23,14 @@ process_data <- function(survey_name, dir_path, calc_func, file_suffix) {
   # Remove duplicates and sort
   df <- df %>% distinct() %>% arrange(Period)
   
-  # Save the updated data
-  write_rds(df, file_path)
+  return(df)
 }
 
 # Main processing functions
 process_agg_data <- function(survey_name, dir_path) {
-  process_data(survey_name, dir_path, calculate_agg, "agg")
+  process_data(survey_name, dir_path, calculate_agg)
 }
 
 process_indicators_data <- function(survey_name, dir_path) {
-  process_data(survey_name, dir_path, calculate_indicators, "indicators")
+  process_data(survey_name, dir_path, calculate_indicators)
 }

@@ -1,3 +1,5 @@
+#################### Indicators functions
+
 # Function to calculate Industry Confidence Indicator
 calculate_industry_confidence <- function(data) {
   orders <- data$po.orders_curr.q
@@ -43,19 +45,7 @@ calculate_indicators <- function(data, period) {
 
 # Function to calculate quarterly and annual changes and percent changes of indicators
 # In dq, pdq, dy, pdy, d = delta, p = percent, q = quarter, y = year.
-delta_indicators <- function(survey_name, dir_path) {
-  # Define file paths
-  indicators_file_path <- paste0(dir_path, "/", tolower(survey_name), "-indicators.rds")
-  delta_indicators_file_path <- paste0(dir_path, "/", tolower(survey_name), "-indicators-delta.rds")
-  
-  # Check if the indicators file exists
-  if (!file.exists(indicators_file_path)) {
-    stop("Indicators file not found")
-  }
-  
-  # Read the indicators data
-  indicators_df <- read_rds(indicators_file_path)
-  
+delta_indicators <- function(indicators_df) {
   # Ensure the Period column is sorted
   indicators_df <- indicators_df %>% arrange(Period)
   
@@ -101,6 +91,5 @@ delta_indicators <- function(survey_name, dir_path) {
   # Remove the temporary Year and Quarter columns
   indicators_df <- indicators_df %>% select(-Year, -Quarter)
   
-  # Save the updated indicators data
-  write_rds(indicators_df, delta_indicators_file_path)
+  return(indicators_df)
 }
