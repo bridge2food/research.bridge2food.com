@@ -24,7 +24,8 @@ if (include_pre_release) {
 # Define the survey name
 survey_name <- "PPUS"
 
-ppus_latest <- latest_data(survey_name)
+ppus_latest <- latest_data(survey_name) %>%
+  filter(Finished==1)
 
 # Variable naming conventions:
 # p = past, c = current, n = next, q = quarter
