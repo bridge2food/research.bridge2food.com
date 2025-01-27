@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+/.quarto/
+/_freeze/
+
+/data_raw/
+
+/healthferm/wp4survey/data_raw/
+/healthferm/wp4survey/data_csv/

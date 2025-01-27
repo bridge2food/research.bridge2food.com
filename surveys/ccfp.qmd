@@ -1,0 +1,27 @@
+---
+title: Cell-Cultured Food Producer (CCFP) Survey
+format: 
+  html:
+    page-layout: article
+title-block-banner: true
+---
+
+:::{.column-body}
+![](/assets/images/logos/EN_Co-fundedbytheEU_RGB_POS.png){width=50% fig-align="center"}
+:::
+
+::: {.hidden}
+# Overview 
+:::
+
+The Cell-Cultured Food Producer (CCFP) Survey captures benchmark data from the cell-cultured meat and dairy sectors. It includes producers of cell-cultured foods and ingredients as well as supporting technology, equipment, and input suppliers.
+
+Each quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders. For companies operating in the cell-cultured food sector, this survey is an indispensable tool offering empirical guidance for strategic business planning.
+
+This survey is made possible through funding from the European Union's [HORIZON EUROPE](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en) research and innovation programme under grant agreement [No 101059632](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43108390/101059632/HORIZON).
+
+# Participating Companies
+
+This survey is conducted by invitation only. To express interest in participating, [send us an email](mailto:research@bridge2food.com).
+
+Learn about [exclusive benefits](/surveys/#participating-companies) for participating companies.

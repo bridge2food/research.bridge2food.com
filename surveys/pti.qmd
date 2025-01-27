@@ -1,0 +1,28 @@
+---
+title: Protein Technology Investor (PTI) Survey
+format: 
+  html:
+    page-layout: article
+title-block-banner: true
+---
+
+:::{.column-body}
+![](/assets/images/logos/EN_Co-fundedbytheEU_RGB_POS.png){width=50% fig-align="center"}
+:::
+
+::: {.hidden}
+# Overview 
+:::
+
+The Protein Technology Investor (PTI) Survey captures benchmark data from a diverse range of investors, including venture capital firms, institutional investors, private equity firms, family offices, hedge funds, corporate venture arms, endowment funds, impact investors, and mutual funds. It includes companies specialized in food and protein technology investments as well as those with diversified portfolios that include emerging food and protein technologies. 
+
+Each quarter, the survey delivers valuable insights into the industry’s status and outlook, providing essential information for policymakers, investors, and other stakeholders. For investors operating in the food and protein technology sector, this survey is an indispensable tool offering empirical guidance for strategic business planning.
+
+This survey is made possible through funding from the European Union's [HORIZON EUROPE](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en) research and innovation programme under grant agreement [No 101059632](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/projects-details/43108390/101059632/HORIZON).
+
+# Participating Companies
+
+This survey is conducted by invitation only. To express interest in participating, [send us an email](mailto:research@bridge2food.com).
+
+Learn about [exclusive benefits](/surveys/#participating-companies) for participating companies.
+

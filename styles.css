@@ -1,0 +1,76 @@
+/* css styles */
+
+.navbar-logo {
+  max-height: 32px !important;
+  margin-top: 5px;
+}
+
+#quarto-header>nav {
+  border-bottom: 2px solid #ED6508;
+}
+
+.bg-hero {
+  background-image: url("/assets/images/home_art.svg");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /*background-size: cover;*/
+  background-size: 60% 90%;
+  background-position: top right;
+  /*animation: grow 15s infinite alternate;*/
+  margin-left: auto;
+}
+@keyframes grow {
+  0% {
+    background-size: 60% 90%;
+  }
+  100% {
+    background-size: 65% 95%;
+  }
+}
+
+.project-logos a {
+      position: relative;
+    }
+    .project-logos img {
+      transition: transform 0.3s ease-in-out;
+      padding: 0 2rem;
+      margin-top: auto;
+    }
+    .project-logos a:hover img {
+      transform: scale(1.05);
+    }
+    .text-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      background: rgba(10, 100, 100, 0.9);
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 2px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .project-logos a:hover .text-overlay {
+      opacity: 1;
+    }
+    .card-shadow {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+    .card-shadow:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .intelligence-img img {
+      opacity: 0.5;
+      transition: transform 0.3s ease-in-out;
+    }
+    .intelligence-img img:hover {
+      transform: scale(1.01);
+      opacity: 0.6
+    }
+    

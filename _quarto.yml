@@ -1,0 +1,54 @@
+project:
+  type: website
+  resources:
+    - "_headers"
+    - "_redirects"
+    - "netlify.toml"
+    - "timeline/timeline.json"
+
+website:
+  site-url: "https://research.bridge2food.com/"
+  image: /assets/images/logos/b2flogopad.png
+  twitter-card:
+    site: "@bridge2food"
+    creator: "@bridge2food"
+    card-style: summary_large_image
+  cookie-consent:
+    type: implied
+    style: simple
+  navbar:
+    right:
+      - href: projects.qmd
+        text: Research Projects
+        icon: lightbulb
+      - href: intelligence.qmd
+        text: Industry Intelligence
+        icon: graph-up-arrow
+      - href: data/index.qmd
+        text: Data Portal
+        icon: database
+      - href: about.qmd
+        text: About
+    logo: /assets/images/logos/b2flogo.png
+      
+  page-footer: 
+    background: "light"
+    border: true
+    center: |
+      <br> Copyright 2024 [Bridge2Food](https://bridge2food.com/). All rights reserved. <br><br>
+  search: false
+  favicon: /assets/images/logos/favicon.ico
+  open-graph: true
+
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: solar
+    css: styles.css
+    toc: true
+    include-in-header: ga.html
+    email-obfuscation: javascript
+
+
